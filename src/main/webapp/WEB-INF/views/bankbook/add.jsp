@@ -18,8 +18,33 @@
 		<div class="input-group text-center"><span class="input-group-text" id="basic-addon2"> 이자율</span><input  type="text" name="bookRate"></div><br>
 		
 		<p>
-			<div class="input-group text-center me-5"><span class="input-group-text" id="basic-addon2">판매가능</span><input class="ms-4 " type="radio" name="bookSale" checked value="1"></div><br>
-			<div class="input-group text-center me-5"><span class="input-group-text" id="basic-addon2">판매가능</span><input class=" ms-4 " type="radio" name="bookSale" value="0"></div><br>
+			<div class="input-group text-center me-5">
+				<span class="input-group-text" id="basic-addon2">판매가능</span>
+				<input class="ms-4 " type="radio" name="bookSale" checked value="1">
+			</div><br>
+			<div class="input-group text-center me-5">
+				<span class="input-group-text" id="basic-addon2">판매중단</span>
+				<input class=" ms-4 " type="radio" name="bookSale" value="0">
+			</div><br>
+		</p>
+		
+		<p>
+			<div class="input-group text-center me-5">
+				<span class="input-group-text" id="basic-addon2">축구</span>
+				<input class="ms-4 " type="checkbox" name="sports" value="footBall">
+			</div><br>
+			<div class="input-group text-center me-5">
+				<span class="input-group-text" id="basic-addon2">농구</span>
+				<input class="ms-4 " type="checkbox" name="sports" value="basketBall">
+			</div><br>
+			<div class="input-group text-center me-5">
+				<span class="input-group-text" id="basic-addon2">야구</span>
+				<input class="ms-4 " type="checkbox" name="sports" value="baseBall">
+			</div><br>
+			<div class="input-group text-center me-5">
+				<span class="input-group-text" id="basic-addon2">배구</span>
+				<input class="ms-4 " type="checkbox" name="sports" value="volleyBall">
+			</div><br>
 		</p>
 		
 		
