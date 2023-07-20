@@ -1,4 +1,4 @@
-package com.iu.main.bankbook;
+package com.iu.main.bankBook;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,13 +16,14 @@ public class BankBookController {
 	@RequestMapping(value="list", method = RequestMethod.GET)
 	public String getList() throws Exception {
 		System.out.println("list");
-		bankBookService.service();
 		return "bankbook/list";
 	}
 	
 	@RequestMapping(value="detail") //안쓰면 기본 겟
-	public String getDetail() throws Exception {
-		System.out.println("detail");
+	public String getDetail(BankBookDTO bankBookDTO) throws Exception {
+		bankBookService.getDetail(bankBookDTO);
+		System.out.println(bankBookDTO.getBookName());
+		System.out.println("디테일까진 오냐?");
 		return "bankbook/detail";
 	}
 	

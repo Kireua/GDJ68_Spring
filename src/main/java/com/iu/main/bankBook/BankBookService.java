@@ -1,4 +1,4 @@
-package com.iu.main.bankbook;
+package com.iu.main.bankBook;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,10 +9,8 @@ public class BankBookService {
 	@Autowired
 	private BankBookDAO bankBookDAO;
 	
-	public void service() {
-		System.out.println("service");
-		bankBookDAO.dao();
-		
+	public BankBookDTO getDetail(BankBookDTO bankBookDTO) throws Exception {
+		return bankBookDAO.getDetail(bankBookDTO);
 	}
 
 }
