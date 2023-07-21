@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,28 +28,38 @@ public class BankBookController {
 	@RequestMapping(value="detail") //안쓰면 기본 겟
 	public ModelAndView getDetail(BankBookDTO bankBookDTO, ModelAndView mav) throws Exception {
 		bankBookDTO=bankBookService.getDetail(bankBookDTO);
-		System.out.println(bankBookDTO.getBookName());
-		System.out.println("디테일은 오냐?");
 		mav.addObject("dto",bankBookDTO);
 		mav.setViewName("bankbook/detail");
 		return mav;
 	}
 	
 	@RequestMapping(value="add")
-	public String add() throws Exception {
-		System.out.println("add");
-		return "bankbook/add";
+	public void setAdd() throws Exception {
+		
+	}
+	
+	
+	@RequestMapping(value="add", method = RequestMethod.POST)
+	public String setAdd(BankBookDTO bankBookDTO) throws Exception {
+		int result = bankBookService.setAdd(bankBookDTO);
+		return "redirect:./list";
 	}
 	
 	@RequestMapping(value="update")
-	public String update() throws Exception {
-		System.out.println("update");
-		return "bankbook/update";
+	public void setUpdate(BankBookDTO bankBookDTO, Model model) throws Exception {
+		bankBookDTO = bankBookService.getDetail(bankBookDTO);
+		model.addAttribute("dto", bankBookDTO);
+	}
+	
+	@RequestMapping(value="update", method = RequestMethod.POST)
+	public String setUpdate(BankBookDTO bankBookDTO) throws Exception{
+		int result = bankBookService.setUpdate(bankBookDTO);
+		return "redirect:./list";
 	}
 	
 	@RequestMapping(value="delete") //수정필요
-	public String delete() throws Exception {
-		System.out.println("delete");
-		return "bankbook/delete";
+	public String delete(Long bookNum) throws Exception {
+		bankBookService.setDelete(bookNum);
+		return "redirect:./list";
 	}
 }
