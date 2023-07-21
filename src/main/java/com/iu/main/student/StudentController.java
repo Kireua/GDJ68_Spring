@@ -51,6 +51,7 @@ public class StudentController {
 	
 	@RequestMapping(value="update", method = RequestMethod.POST)
 	public String setUpdate(StudentDTO studentDTO) throws Exception{
+		studentDTO.cal();
 		int result = studentService.setUpdate(studentDTO);
 		return "redirect:./list";
 	}

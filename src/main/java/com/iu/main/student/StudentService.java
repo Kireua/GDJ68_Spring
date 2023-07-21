@@ -25,6 +25,7 @@ public class StudentService {
 	}
 	
 	public int setUpdate(StudentDTO studentDTO) throws Exception{
+		studentDTO.cal();
 		return studentDAO.setUpdate(studentDTO);
 	}
 	
