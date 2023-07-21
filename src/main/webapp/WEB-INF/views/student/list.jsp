@@ -29,6 +29,7 @@
 			
 		</tbody>
 	</table>
-	
+		<a class="btn btn-outline-secondary" href="./add" >학생등록</a>
+	</section>
 </body>
 </html>

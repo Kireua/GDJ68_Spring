@@ -12,8 +12,14 @@
   		<select id="getDetail" resultType="com.iu.main.student.StudentDTO" parameterType="com.iu.main.student.StudentDTO">
 		SELECT * FROM STUDENT WHERE STUDNUM=#{studNum}  	
   	</select>
-  	<insert id="a"></insert>
-  	<update id="b"></update>
-  	<delete id="c"></delete>
+  	<insert id="setAdd" parameterType="com.iu.main.student.StudentDTO">
+  		INSERT INTO STUDENT VALUES (BANK_SEQ.NEXTVAL,#{name},#{korean},#{english},#{math},#{total},#{average})
+  	</insert>
+  	<update id="setUpdate" parameterType="com.iu.main.student.StudentDTO">
+  		UPDATE STUDENT SET NAME=#{name}, KOREAN=#{korean}, ENGLISH=#{english}, MATH=#{math} WHERE STUDNUM=#{studNum} 
+  	</update>
+  	<delete id="setDelete" parameterType="com.iu.main.student.StudentDTO">
+  		DELETE STUDENT WHERE STUDNUM=#{studNum}
+  	</delete>
   	
   </mapper>
