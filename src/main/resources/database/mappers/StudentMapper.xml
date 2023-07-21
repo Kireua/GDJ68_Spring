@@ -16,7 +16,7 @@
   		INSERT INTO STUDENT VALUES (BANK_SEQ.NEXTVAL,#{name},#{korean},#{english},#{math},#{total},#{average})
   	</insert>
   	<update id="setUpdate" parameterType="com.iu.main.student.StudentDTO">
-  		UPDATE STUDENT SET NAME=#{name}, KOREAN=#{korean}, ENGLISH=#{english}, MATH=#{math} WHERE STUDNUM=#{studNum} 
+  		UPDATE STUDENT SET NAME=#{name}, KOREAN=#{korean}, ENGLISH=#{english}, MATH=#{math},TOTAL=#{total},AVERAGE=#{average} WHERE STUDNUM=#{studNum} 
   	</update>
   	<delete id="setDelete" parameterType="com.iu.main.student.StudentDTO">
   		DELETE STUDENT WHERE STUDNUM=#{studNum}
