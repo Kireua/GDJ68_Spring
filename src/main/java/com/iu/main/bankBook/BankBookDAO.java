@@ -3,6 +3,7 @@ package com.iu.main.bankBook;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
 
 import javax.naming.spi.DirStateFactory.Result;
 
@@ -18,9 +19,13 @@ public class BankBookDAO {
 	
 	private final String NAMESPACE="com.iu.main.bankBook.BankBookDAO.";
 
+	
+	public List<BankBookDTO> getList() throws Exception {
+		
+		return sqlSession.selectList(NAMESPACE+"getList");
+	}
+	
 	public BankBookDTO getDetail(BankBookDTO bankBookDTO) throws Exception {
-		
-		
 		
 		return sqlSession.selectOne(NAMESPACE+"getDetail", bankBookDTO);
 	}
