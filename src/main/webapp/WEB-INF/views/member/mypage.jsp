@@ -25,8 +25,13 @@
 	  <input type="text" name="name" class="form-control" id="name" value="${sessionScope.member.name }">
 	</div>
 	
+	<div class="mb-3">
+	  <label for="name" class="form-label">birth</label>
+	  <input type="text" name="name" class="form-control" id="birth" value="${sessionScope.member.birth }">
+	</div>
 	</form>
 	
+	<a class="btn btn-primary" href="./memberUpdate">회원수정</a>
 	
 	</section>
 </body>
