@@ -18,12 +18,12 @@
 	<form action="./join" method="post">
 	<div class="mb-3">
 	  <label for="id" class="form-label">ID</label>
-	  <input type="text" name="id" class="form-control" id="id" value="seo" placeholder="ID를 입력하세요">
+	  <input type="text" name="id" class="form-control" id="id"  placeholder="ID를 입력하세요">
 	</div>
 	
 	<div class="mb-3">
 	  <label for="pw" class="form-label">PASSWORD</label>
-	  <input type="password" name="pw" class="form-control" id="pw" value="donghwi" placeholder="PW를 입력하세요">
+	  <input type="password" name="pw" class="form-control" id="pw"  placeholder="PW를 입력하세요">
 	</div>
 	
 	<div class="mb-3">

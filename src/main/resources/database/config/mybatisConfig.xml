@@ -8,6 +8,8 @@
 		<typeAlias type="com.iu.main.bankBook.BankBookDTO" alias="BankBookDTO"/>
 		<typeAlias type="java.lang.Long" alias="Long"/>
 		<typeAlias type="com.iu.main.member.MemberDTO" alias="MemberDTO"/>
+		<typeAlias type="com.iu.main.notice.NoticeDTO" alias="NoticeDTO"/>
+		
 	</typeAliases>
 	
 </configuration>				  
