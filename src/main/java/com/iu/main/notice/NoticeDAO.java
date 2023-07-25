@@ -1,6 +1,7 @@
 package com.iu.main.notice;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
@@ -20,4 +21,29 @@ public class NoticeDAO {
 		return sqlSession.selectList(NAMESPACE+"getList");
 	}
 	
+	public int setAdd(NoticeDTO noticeDTO) throws Exception {
+		
+		return sqlSession.insert(NAMESPACE+"setAdd",noticeDTO);
+	}
+	
+	public NoticeDTO getDetail(NoticeDTO noticeDTO) throws Exception {
+		
+		return sqlSession.selectOne(NAMESPACE+"getDetail", noticeDTO);
+	}
+	
+	public int setUpdate(NoticeDTO noticeDTO) throws Exception {
+		
+		return sqlSession.update(NAMESPACE+"setUpdate", noticeDTO);
+	}
+	
+	public int setDelete(NoticeDTO noticeDTO) throws Exception {
+	
+		return sqlSession.delete(NAMESPACE+"setDelete",noticeDTO);
+		
+	}
+	
+	public int setHitCount(NoticeDTO noticeDTO) throws Exception {
+		
+		return sqlSession.update(NAMESPACE+"setHitCount", noticeDTO);
+	}
 }

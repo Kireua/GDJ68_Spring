@@ -13,20 +13,29 @@
 	<h1>detail</h1>
 
 	<!-- Getter, Setter 의 이름 : 메서드에서 get을 제외하고 첫번째글자를 소문자로 바꾼것 -->
-	<h1>${requestScope.dto.bookName}</h1>
-	<h1>${dto.bookRate}</h1>
 	
-	<c:choose>
-		<c:when test="${dto.bookSale eq 1}">
-			<h1>판매중</h1>
-		</c:when>
-		<c:otherwise>
-			<h1>판매종료</h1>
-		</c:otherwise>
-	</c:choose>
+	<table class="table table-dark table-hover">
+		<thead>
+			<th>글번호</th>
+			<th>제목</th>
+			<th>작성자</th>
+			<th>작성일</th>
+			<th>조회수</th>
+		</thead>
+		<tbody>
+				<tr>
+					<td>${dto.no}</a></td>
+					<td>${dto.subject}</td>
+					<td>${dto.name}</td>
+					<td>${dto.createDate}</td>
+					<td>${dto.hit} </td>
+				</tr>
+		</tbody>
+		</table>
 	
-	<a href="./update?bookNum=${dto.bookNum}">수정</a>
-	<a href="./delete?bookNum=${dto.bookNum}">삭제</a>
+	
+	<a href="./update?no=${dto.no}">수정</a>
+	<a href="./delete?no=${dto.no}">삭제</a>
 <%-- 	<c:if test="${dto.bookSale eq 1}">
 		<h1> 판매중 </h1>
 	</c:if>

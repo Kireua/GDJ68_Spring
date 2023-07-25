@@ -6,8 +6,26 @@
   <mapper namespace="com.iu.main.notice.NoticeDAO">
   	
   	<select id="getList" resultType="NoticeDTO">
-  	SELECT * FROM NOTICE
+  		SELECT NO,SUBJECT,NAME,CREATEDATE,HIT FROM NOTICE ORDER BY NO DESC
   	</select>
   	
+  	<insert id="setAdd" parameterType="NoticeDTO">
+  		INSERT INTO NOTICE VALUES(NOTICE_SEQ.NEXTVAL,#{subject},#{contents},#{name},SYSDATE,0)
+  	</insert>
   	
+  	<select id="getDetail" resultType="NoticeDTO" parameterType="NoticeDTO">
+		SELECT * FROM NOTICE WHERE NO=#{no}  	
+  	</select>
+  	
+  	<update id="setUpdate" parameterType="NoticeDTO">
+		UPDATE NOTICE SET SUBJECT=#{subject}, CREATEDATE=#{createDate}, CONTENTS=#{contents} WHERE NO=#{no}  	
+  	</update>
+  	
+  	<delete id="setDelete" parameterType="NoticeDTO">
+  		DELETE NOTICE WHERE NO=#{no}
+  	</delete>
+  	
+  	<update id="setHitCount" parameterType="NoticeDTO">
+  		UPDATE NOTICE SET HIT=HIT+1 WHERE NO=#{no}
+  	</update>
   </mapper>

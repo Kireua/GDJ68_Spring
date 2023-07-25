@@ -15,10 +15,10 @@ public class NoticeTest extends MyTest{
 	private NoticeDAO noticeDAO;
 	
 	@Test
-	public void NoticeDAOTest() throws Exception {
+	public void getListTest() throws Exception {
 		List<NoticeDTO> ar = noticeDAO.getList();
 		
-		assertNotNull(ar);
+		assertNotEquals(0,ar.size());
 	}
 
 
