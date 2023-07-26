@@ -6,7 +6,17 @@
   <mapper namespace="com.iu.main.notice.NoticeDAO">
   	
   	<select id="getList" resultType="NoticeDTO">
-  		SELECT NO,SUBJECT,NAME,CREATEDATE,HIT FROM NOTICE ORDER BY NO DESC
+		SELECT  NO,SUBJECT,NAME,CREATEDATE,HIT
+		FROM
+			(SELECT ROWNUM R ,N.* 
+			   FROM
+				(
+					SELECT * FROM NOTICE
+					WHERE NO > 0
+					ORDER BY NO DESC 
+				) N 
+			) 
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
   	</select>
   	
   	<insert id="setAdd" parameterType="NoticeDTO">
@@ -28,4 +38,8 @@
   	<update id="setHitCount" parameterType="NoticeDTO">
   		UPDATE NOTICE SET HIT=HIT+1 WHERE NO=#{no}
   	</update>
+  	
+  	<select id="getTotal" resultType="Long">
+  		SELECT COUNT(NO) FROM NOTICE
+  	</select>
   </mapper>

@@ -8,6 +8,8 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.iu.main.util.Pager;
+
 @Repository
 public class NoticeDAO {
 	
@@ -15,10 +17,13 @@ public class NoticeDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE ="com.iu.main.notice.NoticeDAO.";
 	
+	public Long getTotal() throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getTotal");
+	}
 	
-	public List<NoticeDTO> getList() throws Exception {
+	public List<NoticeDTO> getList(Pager pager) throws Exception {
 		
-		return sqlSession.selectList(NAMESPACE+"getList");
+		return sqlSession.selectList(NAMESPACE+"getList",pager);
 	}
 	
 	public int setAdd(NoticeDTO noticeDTO) throws Exception {
