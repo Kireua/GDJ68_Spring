@@ -4,9 +4,23 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.iu.main.bankBook.BankBookDAO">
+  
+  	<select id="getTotal" resultType="Long">
+  		SELECT COUNT(BOOKNUM) FROM BANKBOOK
+  	</select>
   	
-  	<select id="getList" resultType="BankBookDTO">
-  		SELECT BOOKNUM, BOOKNAME, BOOKRATE, BOOKSALE FROM BANKBOOK ORDER BY BOOKNUM DESC
+  	<select id="getList" resultType="BankBookDTO" parameterType="com.iu.main.util.Pager">
+  		SELECT BOOKNUM, BOOKNAME, BOOKRATE
+		FROM
+			(SELECT ROWNUM R ,B.* 
+	   		 FROM
+				(
+				SELECT * FROM BANKBOOK
+				WHERE BOOKNUM > 0
+				ORDER BY BOOKNUM DESC 
+				) B 
+			) 
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
   	</select>
   	
   	<select id="getDetail" resultType="BankBookDTO" parameterType="BankBookDTO">
@@ -20,8 +34,11 @@
   	<update id="setUpdate" parameterType="BankBookDTO">
 		UPDATE BANKBOOK SET BOOKNAME=#{bookName}, BOOKRATE=#{bookRate}, BOOKSALE=#{bookSale}, BOOKCONTENTS=#{bookContents} WHERE BOOKNUM=#{bookNum}  	
   	</update>
+  	
   	<delete id="setDelete" parameterType="Long">
   		DELETE BANKBOOK WHERE BOOKNUM=#{num}
   	</delete>
+  	
+  	
   	
   </mapper>

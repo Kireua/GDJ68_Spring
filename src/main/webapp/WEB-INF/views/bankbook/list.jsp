@@ -14,7 +14,7 @@
 	<section class="container mt-5">
 	<h1 class="mb-5 text-center" >BankBook List</h1>
 	<!-- 표현식 -->
-
+	
 	<table class="table table-dark table-hover">
 		<thead>
 			<th>상품명</th><th>이자율</th>
@@ -29,7 +29,27 @@
 			
 		</tbody>
 	</table>
-	
+		<nav aria-label="...">
+		  <ul class="pagination">
+		  	<c:if test="${pager.pre}">
+		    <li class="page-item">
+		      <a class="page-link" href="./list?page=${pager.page-1 }">Previous</a>
+		    </li>
+		     </c:if>
+		   <c:forEach begin="${pager.startNum }" end="${pager.lastNum }" var="i">
+		    <li class="page-item " aria-current="page">
+		      <a class="page-link" href="./list?page=${i }">${i}</a>
+		    </li>
+		   </c:forEach>
+		   <c:if test="${pager.next}">
+		    <li class="page-item">
+		      <a class="page-link"  href="./list?page=${pager.page+1}">Next</a>
+		    </li>
+		    </c:if>
+		  </ul>
+		</nav>
+		
+		<br><br>
 	<a class="btn btn-outline-secondary" href="./add" >상품등록</a>
 	</section>
 <%-- 	<c:forEach begin="1" step="2" end="10" var="num">
