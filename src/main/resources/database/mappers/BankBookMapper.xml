@@ -16,13 +16,20 @@
 		-->
 		<choose>
 			<when test="kind == 'name'"> <!-- #{kind} 오류  →  #{ } 생략 -->
-				bookName LIKE '%' || #{keyword} || '%' <!-- '%#{keyword}%'  →  오류 : '%서동휘%'이 아닌 '%'서동휘'%'으로 인식됨 -->
+				BOOKNAME LIKE '%' || #{keyword} || '%' <!-- '%#{keyword}%'  →  오류 : '%서동휘%'이 아닌 '%'서동휘'%'으로 인식됨 -->
+			</when>
+			<when test="kind == 'contents'">
+				BOOKCONTENTS LIKE '%' || #{keyword} || '%'
 			</when>
 			<otherwise>
-				bookContents LIKE '%' || #{keyword} || '%'
+				BOOKNUM IS NOT NULL	
+			</otherwise>
+		<!-- 
+			<otherwise>
+					bookContents LIKE '%' || #{keyword} || '%'
 		 	</otherwise>
-		</choose>
-		
+		 -->
+		 	
 		<!-- 
 			<if test="kind == 'name'">
 				AND booName LIKE '%#{keyword}%'
@@ -31,6 +38,8 @@
 				AND bookContents LIKE '%#{keyword}%'
 			</if>
 		-->
+		</choose> 
+		
 	</sql>
   
   
@@ -46,6 +55,13 @@
 				(
 				SELECT * FROM BANKBOOK
 				<include refid="searchSQL" />
+					  <!-- 
+						  <if test="kind == 'name'">
+						   AND	BOOKNAME LIKE '%검색어%' 
+						  </if>
+						  <if test="kind == 'contents'">
+						  	AND	BOOKCONTENTS LIKE '%검색어%' 
+						  </if> -->
 				ORDER BY BOOKNUM DESC 
 				) B 
 			) 

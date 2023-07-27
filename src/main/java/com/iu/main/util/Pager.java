@@ -73,7 +73,10 @@ public class Pager {
 		if(curBlock<totalBlock) {
 			this.next=true;
 		}
-		
+//		if(!this.next) {
+//			this.lastNum=totalPage;
+//		}
+//		
 		//마지막 페이지 조절방법 내가한거
 		if(this.lastNum>this.totalPage ) {
 			this.lastNum=this.totalPage;
