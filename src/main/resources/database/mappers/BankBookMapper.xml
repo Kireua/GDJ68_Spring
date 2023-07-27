@@ -5,6 +5,35 @@
   
   <mapper namespace="com.iu.main.bankBook.BankBookDAO">
   
+  	<!-- SQL 조각 -->
+	<sql id="searchSQL">
+		WHERE bookNum > 0
+		AND
+		<!--
+			AND #{kind} LIKE '%' || #{keyword} || '%'  →  오류
+			Database에서 사용되는 예약어(컬럼명, 테이블명 등)는 #{...}으로 대체할 수 없다.
+			그러므로 아래와 같이 동적 쿼리를 사용해야 한다.
+		-->
+		<choose>
+			<when test="kind == 'name'"> <!-- #{kind} 오류  →  #{ } 생략 -->
+				bookName LIKE '%' || #{keyword} || '%' <!-- '%#{keyword}%'  →  오류 : '%서동휘%'이 아닌 '%'서동휘'%'으로 인식됨 -->
+			</when>
+			<otherwise>
+				bookContents LIKE '%' || #{keyword} || '%'
+		 	</otherwise>
+		</choose>
+		
+		<!-- 
+			<if test="kind == 'name'">
+				AND booName LIKE '%#{keyword}%'
+			</if>
+			<if test="kind == 'contents'">
+				AND bookContents LIKE '%#{keyword}%'
+			</if>
+		-->
+	</sql>
+  
+  
   	<select id="getTotal" resultType="Long">
   		SELECT COUNT(BOOKNUM) FROM BANKBOOK
   	</select>
@@ -16,7 +45,7 @@
 	   		 FROM
 				(
 				SELECT * FROM BANKBOOK
-				WHERE BOOKNUM > 0
+				<include refid="searchSQL" />
 				ORDER BY BOOKNUM DESC 
 				) B 
 			) 

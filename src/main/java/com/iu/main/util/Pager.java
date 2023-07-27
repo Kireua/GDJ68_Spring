@@ -3,6 +3,8 @@ package com.iu.main.util;
 
 public class Pager {
 
+	private String kind;
+	private String keyword;
 	private Long startRow;
 	private Long lastRow;
 	
@@ -85,6 +87,26 @@ public class Pager {
 	}
 	
 	
+	public String getKind() {
+		return kind;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+
+	public String getKeyword() {
+		if(keyword == null) {
+			keyword = "";
+		}
+		
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
 	public boolean isPre() {
 		return pre;
 	}

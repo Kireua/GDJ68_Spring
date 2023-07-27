@@ -4,17 +4,24 @@ public class Robot {
 
 	private String name;
 	private Arm arm;
-	
-	
-	public Robot() {
+
+	private static Robot robot;
+	//SingleTone
+	private Robot() {
 //		this.arm = new Arm();
 //		결합도가 높다 (강하다)
 	}
-	
-	public Robot(Arm arm) {
-		this.arm = arm;
-		//결합도가 낮다 (약하다)
+
+	public static Robot getInstance() {
+		if(robot==null) {
+			Robot.robot=new Robot();
+		}
+		return Robot.robot;
 	}
+//	public Robot(Arm arm) {
+//		this.arm = arm;
+//		//결합도가 낮다 (약하다)
+//	}
 	
 	
 	public String getName() {

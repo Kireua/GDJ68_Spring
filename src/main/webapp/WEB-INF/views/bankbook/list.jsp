@@ -48,7 +48,18 @@
 		    </c:if>
 		  </ul>
 		</nav>
-		
+		<form action="./list">
+			<div class="input-group mb-3">
+				<select name="kind" class="form-select" aria-label="Default select example">
+					<option value="name">상품명</option>
+					<option value="contents">내용</option>
+				</select>
+				<input type="text" name="keyword" class="form-control" aria-label="Amount (to the nearest dollar)">
+				<div class="col-auto">
+					<button type="submit" class="btn btn-primary">검색</button>
+				</div>
+			</div>
+		</form>
 		<br><br>
 	<a class="btn btn-outline-secondary" href="./add" >상품등록</a>
 	</section>
