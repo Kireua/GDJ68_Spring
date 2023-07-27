@@ -31,7 +31,7 @@ public class BankBookService {
 //		map.put("lastRow", lastRow);
 //		map.put("startRow", startRow);
 		pager.makeRowNum();
-		Long total = bankBookDAO.getTotal();
+		Long total = bankBookDAO.getTotal(pager);
 		pager.makePageNum(total);
 		return bankBookDAO.getList(pager);
 	}

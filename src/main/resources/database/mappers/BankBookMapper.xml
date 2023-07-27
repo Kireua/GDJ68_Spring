@@ -45,6 +45,7 @@
   
   	<select id="getTotal" resultType="Long">
   		SELECT COUNT(BOOKNUM) FROM BANKBOOK
+  		<include refid="searchSQL" />
   	</select>
   	
   	<select id="getList" resultType="BankBookDTO" parameterType="com.iu.main.util.Pager">

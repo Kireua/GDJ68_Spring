@@ -22,9 +22,9 @@ public class BankBookDAO {
 	
 	private final String NAMESPACE="com.iu.main.bankBook.BankBookDAO.";
 
-	public Long getTotal() throws Exception {
+	public Long getTotal(Pager pager) throws Exception {
 		
-		return sqlSession.selectOne(NAMESPACE+"getTotal");
+		return sqlSession.selectOne(NAMESPACE+"getTotal",pager);
 	}
 	
 	public List<BankBookDTO> getList(Pager pager) throws Exception {

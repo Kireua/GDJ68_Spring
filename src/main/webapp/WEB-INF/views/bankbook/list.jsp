@@ -33,17 +33,17 @@
 		  <ul class="pagination">
 		  	<c:if test="${pager.pre}">
 		    <li class="page-item">
-		      <a class="page-link" href="./list?page=${pager.page-1 }">Previous</a>
+		      <a class="page-link" href="./list?page=${pager.page-1 }&kind=${pager.kind}&keyword=${pager.keyword}">Previous</a>
 		    </li>
 		     </c:if>
 		   <c:forEach begin="${pager.startNum }" end="${pager.lastNum }" var="i">
 		    <li class="page-item " aria-current="page">
-		      <a class="page-link" href="./list?page=${i }">${i}</a>
+		      <a class="page-link" href="./list?page=${i }&kind=${pager.kind}&keyword=${pager.keyword}">${i}</a>
 		    </li>
 		   </c:forEach>
 		   <c:if test="${pager.next}">
 		    <li class="page-item">
-		      <a class="page-link"  href="./list?page=${pager.page+1}">Next</a>
+		      <a class="page-link"  href="./list?page=${pager.page+1 }&kind=${pager.kind}&keyword=${pager.keyword}">Next</a>
 		    </li>
 		    </c:if>
 		  </ul>
