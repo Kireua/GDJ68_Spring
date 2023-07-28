@@ -1,5 +1,7 @@
 package com.iu.main.bankBook;
 
+import java.util.List;
+
 public class BankBookDTO {
 	
 	//컬럼명과 변수명은 동일하게
@@ -9,8 +11,15 @@ public class BankBookDTO {
 	private Double bookRate;
 	private Integer bookSale;
 	private String bookContents;
+	private List<BankFileDTO> bankFileDTOs;
 	
 	
+	public List<BankFileDTO> getBankFileDTOs() {
+		return bankFileDTOs;
+	}
+	public void setBankFileDTOs(List<BankFileDTO> bankFileDTOs) {
+		this.bankFileDTOs = bankFileDTOs;
+	}
 	public Long getBookNum() {
 		return bookNum;
 	}

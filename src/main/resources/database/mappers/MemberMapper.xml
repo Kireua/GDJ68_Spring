@@ -5,10 +5,31 @@
   
   <mapper namespace="com.iu.main.member.MemberDAO">
   	
+  	<insert id="setFileJoin" parameterType="MemberFileDTO">
+  		INSERT INTO MEMBERFILE VALUES(MEMBERFILE_SEQ.NEXTVAL,#{id},#{originalName},#{fileName})
+  	</insert>
+  	
   	<!-- 로그인 -->
-  	<select id="getLogin" resultType="MemberDTO" parameterType="MemberDTO">
-  		SELECT * FROM MEMBER WHERE ID = #{id} AND PW=#{pw}
+  	<select id="getLogin" resultMap="getLoginResult" parameterType="MemberDTO">
+  		SELECT M.*,MF.* 
+  		FROM MEMBER M
+  		LEFT OUTER JOIN MEMBERFILE MF
+  		ON M.ID = MF.ID
+  		WHERE M.ID = #{id} AND M.PW=#{pw}
   	</select>
+  	
+  	<resultMap type="MemberDTO" id="getLoginResult">
+  		<id column="ID" property="id"/>
+  		<result column="PW" property="pw"/>
+  		<result column="NAME" property="name"/>
+  		<result column="EMAIL" property="email"/>
+  		<result column="BIRTH" property="birth"/>
+		<association property="memberFileDTO" javaType="MemberFileDTO">
+			<id column="FILENUM" property="fileNum"/>
+			<result column="ORIGINALNAME" property="originalName"/>
+			<result column="FILENAME" property="fileName"/>
+		</association>
+  	</resultMap>
   	
   	<!-- 회원수정 -->
 	<update id="setMemberUpdate" parameterType="MemberDTO">

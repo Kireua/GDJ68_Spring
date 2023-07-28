@@ -49,4 +49,13 @@ public class BankBookDAO {
 	public int setDelete(Long num) throws Exception {
 		return sqlSession.delete(NAMESPACE+"setDelete",num);
 	}
+	
+	public int setFileAdd(BankFileDTO bankFileDTO) {
+		return sqlSession.insert(NAMESPACE+"setBankFileAdd", bankFileDTO);
+	}
+	
+	public long getSequence() throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getSequence");
+	}
+	
 }

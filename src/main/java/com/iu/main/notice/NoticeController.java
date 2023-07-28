@@ -59,7 +59,7 @@ public class NoticeController {
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public String setUpdate(NoticeDTO noticeDTO) throws Exception {
 		int result = noticeService.setUpdate(noticeDTO);
-		return "redirect:./detail?no=" + noticeDTO.getNo();
+		return "redirect:./detail?noticeNum=" + noticeDTO.getNoticeNum();
 	}
 	
 	@RequestMapping(value = "delete", method = RequestMethod.GET)

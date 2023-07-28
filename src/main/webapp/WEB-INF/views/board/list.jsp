@@ -26,8 +26,8 @@
 		<tbody>
 			<c:forEach items="${list}" var="n">
 				<tr>
-					<td>${n.no}</a></td>
-					<td><a class="nav-link active" href="./detail?no=${n.no}">${n.subject} </td>
+					<td>${n.noticeNum}</a></td>
+					<td><a class="nav-link active" href="./detail?noticeNum=${n.noticeNum}">${n.subject} </td>
 					<td>${n.name} </td>
 					<td>${n.createDate}</td>
 					<td>${n.hit} </td>

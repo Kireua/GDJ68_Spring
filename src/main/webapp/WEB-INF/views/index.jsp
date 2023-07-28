@@ -20,7 +20,7 @@
 	  </div>
 	  <div class="carousel-inner">
 	    <div class="carousel-item active">
-	      <img src="../../resources/images/imag.jpg" class="d-block w-90" alt="...">
+	      <img src="../../resources/images/karina4.jpg" class="d-block w-90" alt="...">
 	      <div class="carousel-caption d-none d-md-block">
 	        <h5>First slide label</h5>
 	        <p>Some representative placeholder content for the first slide.</p>
@@ -34,7 +34,7 @@
 	      </div>
 	    </div>
 	    <div class="carousel-item">
-	      <img src="../../resources/images/karina.jpg" class="d-block w-90" alt="...">
+	      <img src="../../resources/images/karina2.jpeg" class="d-block w-90" alt="...">
 	      <div class="carousel-caption d-none d-md-block">
 	        <h5>Third slide label</h5>
 	        <p>Some representative placeholder content for the third slide.</p>

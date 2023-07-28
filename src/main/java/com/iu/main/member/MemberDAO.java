@@ -11,8 +11,11 @@ public class MemberDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE="com.iu.main.member.MemberDAO.";
 	
-	public MemberDTO getLogin(MemberDTO memberDTO) throws Exception {
+	public int setFileJoin(MemberFileDTO memberFileDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setFileJoin", memberFileDTO);
+	}
 	
+	public MemberDTO getLogin(MemberDTO memberDTO) throws Exception {
 		
 		return sqlSession.selectOne(NAMESPACE+"getLogin",memberDTO);
 	}

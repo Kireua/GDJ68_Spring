@@ -25,6 +25,11 @@
 		</c:otherwise>
 	</c:choose>
 	
+	<c:forEach items="${dto.bankFileDTOs}" var="f">
+		<img alt="" src="../resources/upload/bankBook/${f.fileName }">
+	</c:forEach>
+
+	
 	<a href="./update?bookNum=${dto.bookNum}">수정</a>
 	<a href="./delete?bookNum=${dto.bookNum}">삭제</a>
 <%-- 	<c:if test="${dto.bookSale eq 1}">

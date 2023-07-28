@@ -13,6 +13,9 @@
 
 	<section class="container mt-5">	
 	<h1 class="my-4">마이 페이지</h1>
+		<p>
+			<img alt="" class="d-block w-20"  src="../resources/upload/member/${member.memberFileDTO.fileName }">
+		</p>
 	<form action="./mypage" method="post">
 	
 	<div class="mb-3">

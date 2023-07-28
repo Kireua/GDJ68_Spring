@@ -6,14 +6,14 @@
   <mapper namespace="com.iu.main.notice.NoticeDAO">
   	
   	<select id="getList" resultType="NoticeDTO">
-		SELECT  NO,SUBJECT,NAME,CREATEDATE,HIT
+		SELECT  NOTICENUM,SUBJECT,NAME,CREATEDATE,HIT
 		FROM
 			(SELECT ROWNUM R ,N.* 
 			   FROM
 				(
 					SELECT * FROM NOTICE
-					WHERE NO > 0
-					ORDER BY NO DESC 
+					WHERE NOTICENUM > 0
+					ORDER BY NOTICENUM DESC 
 				) N 
 			) 
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
@@ -24,22 +24,22 @@
   	</insert>
   	
   	<select id="getDetail" resultType="NoticeDTO" parameterType="NoticeDTO">
-		SELECT * FROM NOTICE WHERE NO=#{no}  	
+		SELECT * FROM NOTICE WHERE NOTICENUM=#{noticeNum}  	
   	</select>
   	
   	<update id="setUpdate" parameterType="NoticeDTO">
-		UPDATE NOTICE SET SUBJECT=#{subject}, CREATEDATE=#{createDate}, CONTENTS=#{contents} WHERE NO=#{no}  	
+		UPDATE NOTICE SET SUBJECT=#{subject}, CREATEDATE=#{createDate}, CONTENTS=#{contents} WHERE NOTICENUM=#{noticeNum}  	
   	</update>
   	
   	<delete id="setDelete" parameterType="NoticeDTO">
-  		DELETE NOTICE WHERE NO=#{no}
+  		DELETE NOTICE WHERE NOTICENUM=#{noticeNum}
   	</delete>
   	
   	<update id="setHitCount" parameterType="NoticeDTO">
-  		UPDATE NOTICE SET HIT=HIT+1 WHERE NO=#{no}
+  		UPDATE NOTICE SET HIT=HIT+1 WHERE NOTICENUM=#{noticeNum}
   	</update>
   	
   	<select id="getTotal" resultType="Long">
-  		SELECT COUNT(NO) FROM NOTICE
+  		SELECT COUNT(NOTICENUM) FROM NOTICE
   	</select>
   </mapper>
