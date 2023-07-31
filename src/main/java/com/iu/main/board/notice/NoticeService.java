@@ -1,4 +1,4 @@
-package com.iu.main.notice;
+package com.iu.main.board.notice;
 
 import java.util.List;
 
@@ -9,30 +9,34 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.main.bankBook.BankFileDTO;
+import com.iu.main.board.BoardDTO;
+import com.iu.main.board.BoardService;
 import com.iu.main.util.FileManager;
 import com.iu.main.util.Pager;
 
 @Service
-public class NoticeService {
+public class NoticeService implements BoardService {
 
 	@Autowired
 	private NoticeDAO noticeDAO;
 	@Autowired
 	private FileManager fileManager;
 	
-	public List<NoticeDTO> getList(Pager pager) throws Exception {
+	@Override
+	public List<BoardDTO> getList(Pager pager) throws Exception {
 		pager.makeRowNum();
-		Long total = noticeDAO.getTotal();
+		Long total = noticeDAO.getTotal(pager);
 		pager.makePageNum(total);
 		return noticeDAO.getList(pager);
 	}
 	
-	public int setAdd(NoticeDTO noticeDTO, MultipartFile[] photos, HttpSession session) throws Exception {
+	@Override
+	public int setAdd(BoardDTO boardDTO, MultipartFile[] photos, HttpSession session) throws Exception {
 		String path = "/resources/upload/notice/";
 		//1번째방법 쿼리만들고 dao 만들어서 하기
 //		long num = bankBookDAO.getSequence();
 //		bankBookDTO.setBookNum(num);
-		int result = noticeDAO.setAdd(noticeDTO);
+		int result = noticeDAO.setAdd(boardDTO);
 		
 		for(MultipartFile multipartFile: photos) {
 			if(multipartFile.isEmpty()) {
@@ -43,35 +47,35 @@ public class NoticeService {
 			noticeFileDTO.setOriginalName(multipartFile.getOriginalFilename());
 			noticeFileDTO.setFileName(fileName);
 			//2번째 방법 selectkey 매퍼 에서 등록해서 사용하기
-			noticeFileDTO.setNoticeNum(noticeDTO.getNoticeNum());
+			noticeFileDTO.setNoticeNum(boardDTO.getNum());
 			result = noticeDAO.setFileAdd(noticeFileDTO);
 		}
-		
-		
-		
-		
 		
 		return result ;
 	}
 	
-	public NoticeDTO getDetail(NoticeDTO noticeDTO) throws Exception {
-		
-		return noticeDAO.getDetail(noticeDTO);
+	@Override
+	public NoticeDTO getDetail(BoardDTO boardDTO) throws Exception {
+		int result = noticeDAO.setHitUpdate(boardDTO);
+		return noticeDAO.getDetail(boardDTO);
 	}
 	
-	public int setUpdate(NoticeDTO noticeDTO) throws Exception {
+	@Override
+	public int setUpdate(BoardDTO boardDTO) throws Exception {
 		
-		return noticeDAO.setUpdate(noticeDTO);
+		return noticeDAO.setUpdate(boardDTO);
 	}
 	
-	public int setDelete(NoticeDTO noticeDTO) throws Exception {
+	@Override
+	public int setDelete(BoardDTO boardDTO) throws Exception {
 		
-		return noticeDAO.setDelete(noticeDTO);
+		return noticeDAO.setDelete(boardDTO);
 	}
 	
-	public int setHitCount(NoticeDTO noticeDTO) throws Exception {
+
+	public int setHitUpdate(BoardDTO boardDTO) throws Exception {
 		
-		return noticeDAO.setHitCount(noticeDTO);
+		return noticeDAO.setHitUpdate(boardDTO);
 	}
 	
 }

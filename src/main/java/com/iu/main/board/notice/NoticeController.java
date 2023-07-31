@@ -1,4 +1,4 @@
-package com.iu.main.notice;
+package com.iu.main.board.notice;
 
 import java.util.List;
 
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.iu.main.board.BoardDTO;
 import com.iu.main.util.Pager;
 
 @Controller
@@ -23,7 +24,7 @@ public class NoticeController {
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String getList(Model model, Pager pager) throws Exception{
-		List<NoticeDTO> ar = noticeService.getList(pager);
+		List<BoardDTO> ar = noticeService.getList(pager);
 		model.addAttribute("list", ar);
 		model.addAttribute("pager", pager);
 		return "board/list";
@@ -44,7 +45,7 @@ public class NoticeController {
 	
 	@RequestMapping(value = "detail")
 	public ModelAndView getDetail(NoticeDTO noticeDTO, ModelAndView mav) throws Exception{
-		int result = noticeService.setHitCount(noticeDTO);
+	
 		noticeDTO=noticeService.getDetail(noticeDTO);
 		mav.addObject("dto",noticeDTO);
 		mav.setViewName("board/detail");
@@ -62,7 +63,7 @@ public class NoticeController {
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public String setUpdate(NoticeDTO noticeDTO) throws Exception {
 		int result = noticeService.setUpdate(noticeDTO);
-		return "redirect:./detail?noticeNum=" + noticeDTO.getNoticeNum();
+		return "redirect:./detail?num=" + noticeDTO.getNum();
 	}
 	
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
