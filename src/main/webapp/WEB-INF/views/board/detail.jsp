@@ -33,6 +33,9 @@
 		</tbody>
 		</table>
 	
+	<c:forEach items="${dto.noticeFileDTOs}" var="f">
+		<img alt="" src="../resources/upload/notice/${f.fileName }">
+	</c:forEach>
 	
 	<a href="./update?noticeNum=${dto.noticeNum}">수정</a>
 	<a href="./delete?noticeNum=${dto.noticeNum}">삭제</a>

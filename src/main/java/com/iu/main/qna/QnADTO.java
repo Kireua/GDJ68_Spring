@@ -1,32 +1,26 @@
-package com.iu.main.notice;
+package com.iu.main.qna;
 
 import java.sql.Date;
-import java.util.List;
 
-import com.iu.main.bankBook.BankFileDTO;
-
-public class NoticeDTO {
-
-	private Long noticeNum;
+public class QnADTO {
+	
+	private Long qnaNum;
 	private String subject;
 	private String contents;
 	private String name;
 	private Date createDate;
 	private Long hit;
-	private List<NoticeFileDTO> noticeFileDTOs;
+	private Long ref;
+	private Long step;
+	private Long depth;
 	
 	
-	public List<NoticeFileDTO> getNoticeFileDTOs() {
-		return noticeFileDTOs;
+	
+	public Long getQnaNum() {
+		return qnaNum;
 	}
-	public void setNoticeFileDTOs(List<NoticeFileDTO> noticeFileDTOs) {
-		this.noticeFileDTOs = noticeFileDTOs;
-	}
-	public Long getNoticeNum() {
-		return noticeNum;
-	}
-	public void setNoticeNum(Long noticeNum) {
-		this.noticeNum = noticeNum;
+	public void setQnaNum(Long qnaNum) {
+		this.qnaNum = qnaNum;
 	}
 	public String getSubject() {
 		return subject;
@@ -58,5 +52,23 @@ public class NoticeDTO {
 	public void setHit(Long hit) {
 		this.hit = hit;
 	}
-	
+	public Long getRef() {
+		return ref;
+	}
+	public void setRef(Long ref) {
+		this.ref = ref;
+	}
+	public Long getStep() {
+		return step;
+	}
+	public void setStep(Long step) {
+		this.step = step;
+	}
+	public Long getDepth() {
+		return depth;
+	}
+	public void setDepth(Long depth) {
+		this.depth = depth;
+	}
+
 }

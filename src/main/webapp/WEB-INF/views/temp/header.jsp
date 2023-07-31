@@ -19,6 +19,9 @@
 		        <li class="nav-item">
 		          <a class="nav-link active"  href="/notice/list">공지사항</a>
 		        </li>
+		           <li class="nav-item">
+		          <a class="nav-link active"  href="/qna/list">Q&A</a>
+		        </li>
 		        <li class="nav-item dropdown">
 		          <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 		            Dropdown

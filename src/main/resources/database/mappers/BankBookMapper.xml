@@ -102,7 +102,7 @@
   		INSERT INTO BANKBOOK VALUES(#{bookNum},#{bookName},#{bookRate},#{bookSale},#{bookContents})
   	</insert>
   	
-  	<insert id="setBankFileAdd" parameterType="BankFileDTO">
+  	<insert id="setFileAdd" parameterType="BankFileDTO">
   		INSERT INTO BANKFILE VALUES(BANKFILE_SEQ.NEXTVAL,#{bookNum},#{originalName},#{fileName})
   	</insert> 
   	

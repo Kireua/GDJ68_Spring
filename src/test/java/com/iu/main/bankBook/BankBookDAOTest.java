@@ -10,11 +10,14 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.iu.main.MyTest;
+import com.iu.main.qna.QnADTO;
 
 public class BankBookDAOTest extends MyTest {
 	
 	@Autowired
 	private BankBookDAO bankBookDAO;
+	@Autowired
+	private QnADTO qnADTO
 
 	@Test
 	public void getListTest() throws Exception {
@@ -33,11 +36,11 @@ public class BankBookDAOTest extends MyTest {
 		BankBookDTO bankBookDTO = new BankBookDTO();
 		
 		for(int i=0; i<30; i++) {
-			bankBookDTO.setBookName("서브프라임모기지"+i);
-			bankBookDTO.setBookContents("서브프라임모기지론내용"+i);
-			bankBookDTO.setBookRate(9.8);
-			bankBookDTO.setBookSale(1);
-			bankBookDAO.setAdd(bankBookDTO);
+//			bankBookDTO.setBookName("서브프라임모기지"+i);
+//			bankBookDTO.setBookContents("서브프라임모기지론내용"+i);
+//			bankBookDTO.setBookRate(9.8);
+//			bankBookDTO.setBookSale(1);
+//			bankBookDAO.setAdd(bankBookDTO);
 		}
 		System.out.println("finish");
 	}

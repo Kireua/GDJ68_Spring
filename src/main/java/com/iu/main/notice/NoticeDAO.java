@@ -8,6 +8,7 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.iu.main.bankBook.BankFileDTO;
 import com.iu.main.util.Pager;
 
 @Repository
@@ -51,4 +52,9 @@ public class NoticeDAO {
 		
 		return sqlSession.update(NAMESPACE+"setHitCount", noticeDTO);
 	}
+	
+	public int setFileAdd(NoticeFileDTO noticeFileDTO) {
+		return sqlSession.insert(NAMESPACE+"setFileAdd", noticeFileDTO);
+	}
+	
 }

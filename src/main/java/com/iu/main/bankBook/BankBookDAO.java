@@ -51,7 +51,7 @@ public class BankBookDAO {
 	}
 	
 	public int setFileAdd(BankFileDTO bankFileDTO) {
-		return sqlSession.insert(NAMESPACE+"setBankFileAdd", bankFileDTO);
+		return sqlSession.insert(NAMESPACE+"setFileAdd", bankFileDTO);
 	}
 	
 	public long getSequence() throws Exception {
