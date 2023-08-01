@@ -88,9 +88,9 @@
   		<result column="NAME" property="name"/>
   		<result column="CREATEDATE" property="createDate"/>
   		<result column="HIT" property="hit"/>
-<!--   		<result column="REF" property="ref"/>
+		<result column="REF" property="ref"/>
   		<result column="STEP" property="step"/>
-  		<result column="DEPTH" property="depth"/> -->
+  		<result column="DEPTH" property="depth"/>
 		<collection property="qnAFileDTOs" javaType="List" ofType="QnAFileDTO">
   			<id column="FILENUM" property="fileNum"/>
   			<result column="FILENAME" property="fileName"/>

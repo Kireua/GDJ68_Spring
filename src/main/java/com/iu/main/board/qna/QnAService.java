@@ -86,7 +86,7 @@ public class QnAService implements BoardService {
 		//부모 글넘버 설정 끝났고 board에는 ref step 등의 멤버변수가 없기때문에 QnADTO q 선언 후 parentDTO를 형변환 해줌
 		QnADTO q = (QnADTO)parentDTO;
 		
-		qnADTO.setRef(q.getRef());
+		qnADTO.setRef(q.getRef());	
 		qnADTO.setStep(q.getStep()+1);
 		qnADTO.setDepth(q.getDepth()+1);
 		int result = qnADAO.setStepUpdate(q);
