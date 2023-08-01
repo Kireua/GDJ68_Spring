@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.iu.main.board.BoardDAO;
 import com.iu.main.board.BoardDTO;
+import com.iu.main.board.notice.NoticeFileDTO;
 import com.iu.main.util.Pager;
 
 @Repository
@@ -33,7 +34,7 @@ public class QnADAO implements BoardDAO{
 	@Override
 	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne(NAMESPACE+"getDetail", boardDTO);
 	}
 
 	@Override
@@ -41,17 +42,17 @@ public class QnADAO implements BoardDAO{
 		
 		return sqlSession.insert(NAMESPACE+"setAdd", boardDTO);
 	}
+	
+	
 
 	@Override
 	public int setUpdate(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update(NAMESPACE+"setUpdate", boardDTO);
 	}
 
 	@Override
 	public int setDelete(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete(NAMESPACE+"setDelete", boardDTO);
 	}
 
 	@Override
@@ -59,4 +60,17 @@ public class QnADAO implements BoardDAO{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	public int setFileAdd(QnAFileDTO qnaFileDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"setFileAdd", qnaFileDTO);
+	}
+	
+	public int setReplyAdd(QnADTO qnADTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"setReplyAdd", qnADTO);
+	}
+	
+	public int setStepUpdate(QnADTO qnADTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"setStepUpdate", qnADTO);
+	}
+	
 } 

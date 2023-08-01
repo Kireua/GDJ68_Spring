@@ -10,9 +10,10 @@
 </head>
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
-	<h1 class="mb-5 text-center">${board } 추가</h1>
+	<h1 class="mb-5 text-center">${board } Reply Page</h1>
 	
-	<form class="mb-5 text-center form-control" action="./add" method="post" enctype="multipart/form-data">
+	<form class="mb-5 text-center form-control" action="./reply" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="num" value="${num }">
 		<div class="input-group text-center"><span class="input-group-text" id="basic-addon2">제목</span><input  type="text" name="subject"></div><br>
 		<div class="input-group text-center"><span class="input-group-text" id="basic-addon2">내용</span><textarea class="input-group" rows="" cols="" name="contents"></textarea></div><br>
 		<div class="input-group text-center"><span class="input-group-text" id="basic-addon2">작성자</span><input  type="text" name="name"  value="${member.id }"></div><br>

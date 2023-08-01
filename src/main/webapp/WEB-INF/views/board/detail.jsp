@@ -33,12 +33,21 @@
 		</tbody>
 		</table>
 	
-	<c:forEach items="${dto.noticeFileDTOs}" var="f">
-		<img alt="" src="../resources/upload/notice/${f.fileName }">
-	</c:forEach>
-	
+	<c:if test="${board eq '공지' }">
+		<c:forEach items="${dto.noticeFileDTOs}" var="f">
+			<img alt="" src="../resources/upload/notice/${f.fileName }">
+		</c:forEach>
+	</c:if> 
+	<c:if test="${board eq 'Q&A' }">
+		<c:forEach items="${dto.qnAFileDTOs}" var="f">
+			<img alt="" src="../resources/upload/qna/${f.fileName }">
+		</c:forEach>
+	</c:if> 
 	<a href="./update?num=${dto.num}">수정</a>
 	<a href="./delete?num=${dto.num}">삭제</a>
+	<c:if test="${board ne '공지' }">
+	<a href="./reply?num=${dto.num}">답글달기</a>
+	</c:if>
 <%-- 	<c:if test="${dto.bookSale eq 1}">
 		<h1> 판매중 </h1>
 	</c:if>

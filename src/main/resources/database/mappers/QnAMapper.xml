@@ -49,7 +49,7 @@
 				(
 					SELECT * FROM QNA
 					<include refid="searchSQL" />
-					ORDER BY NUM DESC 
+					ORDER BY REF DESC, STEP ASC 
 				) N 
 			) 
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
@@ -66,8 +66,59 @@
   		<selectKey keyProperty="num" resultType="Long" order="BEFORE">
   		SELECT QNA_SEQ.NEXTVAL FROM DUAL
   		</selectKey>
-  		INSERT INTO QNA VALUES(#{num},#{name},#{subject},#{contents},SYSDATE,0,0,0,0)
+  		INSERT INTO QNA VALUES(#{num},#{name},#{subject},#{contents},SYSDATE,0,#{num},0,0)
   	</insert>
  
+ 	<insert id="setFileAdd" parameterType="QnAFileDTO">
+  		INSERT INTO QNAFILE VALUES(QNAFILE_SEQ.NEXTVAL,#{qnaNum},#{originalName},#{fileName})
+  	</insert> 
   	
+  	<select id="getDetail" resultMap="getDetailResult" parameterType="QnADTO">
+		SELECT Q.*,QF.*
+		FROM QNA Q
+		LEFT OUTER JOIN QNAFILE QF 
+		ON Q.NUM = QF.QNANUM 
+		WHERE Q.NUM=#{num}
+	
+  	</select>
+  	<resultMap type="QnADTO" id="getDetailResult">
+  		<id column="NUM" property="num" />
+  		<result column="SUBJECT" property="subject"/>
+  		<result column="CONTENTS" property="contents"/>
+  		<result column="NAME" property="name"/>
+  		<result column="CREATEDATE" property="createDate"/>
+  		<result column="HIT" property="hit"/>
+<!--   		<result column="REF" property="ref"/>
+  		<result column="STEP" property="step"/>
+  		<result column="DEPTH" property="depth"/> -->
+		<collection property="qnAFileDTOs" javaType="List" ofType="QnAFileDTO">
+  			<id column="FILENUM" property="fileNum"/>
+  			<result column="FILENAME" property="fileName"/>
+  			<result column="ORIGINALNAME" property="originalName"/>
+  		</collection> 
+  		
+  	</resultMap>
+  	
+  	<update id="setStepUpdate" parameterType="QnADTO">
+		UPDATE QNA SET STEP=STEP+1 
+		WHERE REF=#{ref} and STEP > #{step}	
+  	</update>
+  	
+  	<insert id="setReplyAdd" parameterType="QnADTO">
+  		<selectKey keyProperty="num" resultType="Long" order="BEFORE">
+  		SELECT QNA_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
+  		INSERT INTO QNA 
+  		(NUM,NAME,SUBJECT,CONTENTS,CREATEDATE,HIT,REF,STEP,DEPTH)
+  		VALUES
+  		(#{num},#{name},#{subject},#{contents},SYSDATE,0,#{ref},#{step},#{depth})
+  	</insert>
+  	
+  	<update id="setUpdate" parameterType="QnADTO">
+		UPDATE QNA SET SUBJECT=#{subject}, CREATEDATE=#{createDate}, CONTENTS=#{contents} WHERE NUM=#{num}  	
+  	</update>
+  	
+  	<delete id="setDelete" parameterType="QnADTO">
+  		DELETE QNA WHERE NUM=#{num}
+  	</delete>
   </mapper>

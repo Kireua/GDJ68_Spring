@@ -5,6 +5,44 @@
   
   <mapper namespace="com.iu.main.board.notice.NoticeDAO">
   	
+  	<!-- SQL 조각 -->
+	<sql id="searchSQL">
+		WHERE NOTICENUM > 0
+		AND
+		<!--
+			AND #{kind} LIKE '%' || #{keyword} || '%'  →  오류
+			Database에서 사용되는 예약어(컬럼명, 테이블명 등)는 #{...}으로 대체할 수 없다.
+			그러므로 아래와 같이 동적 쿼리를 사용해야 한다.
+		-->
+		<choose>
+			<when test="kind == 'name'"> <!-- #{kind} 오류  →  #{ } 생략 -->
+				NAME LIKE '%' || #{keyword} || '%' <!-- '%#{keyword}%'  →  오류 : '%서동휘%'이 아닌 '%'서동휘'%'으로 인식됨 -->
+			</when>
+			<when test="kind == 'contents'">
+				CONTENTS LIKE '%' || #{keyword} || '%'
+			</when>
+			<otherwise>
+				NOTICENUM IS NOT NULL	
+			</otherwise>
+		<!-- 
+			<otherwise>
+					bookContents LIKE '%' || #{keyword} || '%'
+		 	</otherwise>
+		 -->
+		 	
+		<!-- 
+			<if test="kind == 'name'">
+				AND booName LIKE '%#{keyword}%'
+			</if>
+			<if test="kind == 'contents'">
+				AND bookContents LIKE '%#{keyword}%'
+			</if>
+		-->
+		</choose> 
+		
+	</sql>
+  	
+  	
   	<select id="getList" resultMap="getDetailResult">
 		SELECT  NOTICENUM,SUBJECT,NAME,CREATEDATE,HIT
 		FROM
@@ -12,7 +50,7 @@
 			   FROM
 				(
 					SELECT * FROM NOTICE
-					WHERE NOTICENUM > 0
+					<include refid="searchSQL" />
 					ORDER BY NOTICENUM DESC 
 				) N 
 			) 
@@ -58,6 +96,7 @@
   	
   	<select id="getTotal" resultType="Long">
   		SELECT COUNT(NOTICENUM) FROM NOTICE
+  		<include refid="searchSQL" />
   	</select>
   	
 	<insert id="setAdd" parameterType="NoticeDTO"> 

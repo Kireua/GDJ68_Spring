@@ -12,7 +12,9 @@
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
 	<section class="container mt-5">
-	<h1 class="mb-5 text-center" >공지사항 게시판</h1>
+	
+	<h1 class="mb-5 text-center" >${board } List</h1>
+	
 	<!-- 표현식 -->
 
 	<table class="table table-dark table-hover">
@@ -26,8 +28,12 @@
 		<tbody>
 			<c:forEach items="${list}" var="n">
 				<tr>
+					
 					<td>${n.num}</a></td>
-					<td><a class="nav-link active" href="./detail?num=${n.num}">${n.subject} </td>
+					
+					<td><a class="nav-link active" href="./detail?num=${n.num}"><c:catch>
+					<c:forEach begin="1" end="${n.depth }">--</c:forEach>
+					</c:catch>${n.subject} </td>
 					<td>${n.name} </td>
 					<td>${n.createDate}</td>
 					<td>${n.hit} </td>
@@ -55,6 +61,18 @@
 		 
 		  </ul>
 		</nav>
+		<form action="./list">
+			<div class="input-group mb-3">
+				<select name="kind" class="form-select" aria-label="Default select example">
+					<option value="name">작성자</option>
+					<option value="contents">내용</option>
+				</select>
+				<input type="text" name="keyword" class="form-control" aria-label="Amount (to the nearest dollar)">
+				<div class="col-auto">
+					<button type="submit" class="btn btn-primary">검색</button>
+				</div>
+			</div>
+		</form>
 		
 		<br><br>
 	<a class="btn btn-outline-secondary" href="./add" >공지추가</a>
