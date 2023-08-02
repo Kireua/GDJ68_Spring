@@ -32,11 +32,16 @@
 	
 	<a href="./update?bookNum=${dto.bookNum}">수정</a>
 	<a href="./delete?bookNum=${dto.bookNum}">삭제</a>
+	<button id="update">수정</button>
+	<button id="del" data-delete-name="bookNum" data-delete-num="${dto.bookNum}">삭제</button>
 <%-- 	<c:if test="${dto.bookSale eq 1}">
 		<h1> 판매중 </h1>
 	</c:if>
 	<c:if test="${dto.bookSale eq 0 }">
 		<h1> 판매종료</h1>
 	</c:if> --%>
-</body>
+
+	<script src="../resources/js/delete.js"></script>
+
+	</body>
 </html>

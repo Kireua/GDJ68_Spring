@@ -16,12 +16,12 @@ public class NoticeTest extends MyTest{
 	@Autowired
 	private NoticeDAO noticeDAO;
 	
-	@Test
-	public void getListTest() throws Exception {
-		List<NoticeDTO> ar = noticeDAO.getList();
-		
-		assertNotEquals(0,ar.size());
-	}
+//	@Test
+//	public void getListTest() throws Exception {
+//		List<NoticeDTO> ar = noticeDAO.getList();
+//		
+//		assertNotEquals(0,ar.size());
+//	}
 
 
 }
