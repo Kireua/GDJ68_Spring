@@ -45,29 +45,32 @@
 	</table>
 	<nav aria-label="...">
 		  <ul class="pagination">
-		    <li class="page-item  ${pager.pre?'':'disabled' }">
-		      <a class="page-link" href="./list?page=${pager.page-1 }">Previous</a>
+		  <c:if test="${pager.pre}">
+		    <li class="page-item ">
+		      <a class="page-link move" href="#" data-num="${pager.startNum-1}" aria-label="Previous"></a>
+		    <span aria-hidden="true">&laquo;</span>
 		    </li>
-		
+			</c:if>
 		   <c:forEach begin="${pager.startNum }" end="${pager.lastNum }" var="i">
-		    <li class="page-item " aria-current="page">
-		      <a class="page-link" href="./list?page=${i }">${i}</a>
-		    </li>
+		    <li class="page-item"><a class="page-link move" href="#" data-num="${i}">${i}</a></li>
 		   </c:forEach>
 		   
 		    <li class="page-item  ${pager.next?'':'disabled' }">
-		      <a class="page-link"  href="./list?page=${pager.page+1}">Next</a>
+		      <a class="page-link move" href="#" data-num="${pager.lastNum+1}" aria-label="Next">
+				        <span aria-hidden="true">&raquo;</span></a>
 		    </li>
 		 
 		  </ul>
 		</nav>
-		<form action="./list">
+		 <form action="./list" method="get" id="frm">
+		 <input type="hidden" value="${pager.page}" id="page" name="page">
 			<div class="input-group mb-3">
-				<select name="kind" class="form-select" aria-label="Default select example">
-					<option value="name">작성자</option>
-					<option value="contents">내용</option>
+				<select name="kind"  id="k"  class="form-select" data-kind="${pager.kind}" aria-label="Default select example">
+					<option class="kind" value="name">작성자</option>
+					<option class="kind" value="contents">내용</option>
+					<option class="kind" value="subject">Subject</option>
 				</select>
-				<input type="text" name="keyword" class="form-control" aria-label="Amount (to the nearest dollar)">
+				<input type="text" name="keyword" value="${pager.keyword }" class="form-control" aria-label="Amount (to the nearest dollar)">
 				<div class="col-auto">
 					<button type="submit" class="btn btn-primary">검색</button>
 				</div>
@@ -82,7 +85,7 @@
 	</c:forEach> --%>
 	
 	
-
+	<script src="/resources/js/list.js"></script>
 
 </body>
 </html>

@@ -8,13 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:if test="${result gt 0}">
-		<h1>성공</h1>
-	</c:if>
-	<c:if test="${result le 0}">
-		<h1>실패</h1>
-	</c:if>
-	
-	<a href="/bankbook/list">Home</a>
+
+	<script type="text/javascript">
+		alert('${message}');
+		location.href="${url}";	
+	</script>
 </body>
 </html>

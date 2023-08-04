@@ -12,34 +12,40 @@
 	<c:import url="../temp/header.jsp"></c:import>
 	<h1 class="mb-5 text-center">${board } 추가</h1>
 	
-	<form class="mb-5 text-center form-control" action="./add" method="post" enctype="multipart/form-data">
-		<div class="input-group text-center"><span class="input-group-text" id="basic-addon2">제목</span><input  type="text" name="subject"></div><br>
+	<form class="mb-5 text-center form-control" action="./add" method="post" id="frm" enctype="multipart/form-data">
+		<div class="input-group text-center"><span class="input-group-text" id="basic-addon2">제목</span><input id="subject" type="text" name="subject"></div><br>
 		<div class="input-group text-center"><span class="input-group-text" id="basic-addon2">내용</span><textarea class="input-group" rows="" cols="" name="contents"></textarea></div><br>
 		<div class="input-group text-center"><span class="input-group-text" id="basic-addon2">작성자</span><input  type="text" name="name"  value="${member.id }"></div><br>
 		
 		
-		
+		<div id="fileList" class="mb-3"></div>
 		<div class="mb-3">
-			<label for="pic" class="form-label">사진첨부</label>
-			<input type="file" name="photos" class="form-control" id="pic" placeholder="사진 첨부">
+			<button id="fileBtn" type="button">File추가</button>
 		</div>
 		
-		<div class="mb-3">
-			<label for="pic" class="form-label">사진첨부</label>
-			<input type="file" name="photos" class="form-control" id="pic" placeholder="사진 첨부">
-		</div>
 		
-		<div class="mb-3">
-			<label for="pic" class="form-label">사진첨부</label>
-			<input type="file" name="photos" class="form-control" id="pic" placeholder="사진 첨부">
-		</div>
-		
-		<button type="submit">등록</button>
-		<input type="submit" value="add">
-		<input type="reset" value="add">
-		<input type="button" value="add">
+		<button id="btn" type="button">등록</button>
+
 	</form>
 
+	<script src="../resources/js/file.js"></script>
+	<script>
+		const btn = document.getElementById("btn");
+		const subject = document.getElementById("subject");
+		const frm = document.getElementById("frm");
+
+		btn.addEventListener("click", function(){
+			console.log(subject.value=="");
+			console.log(subject.value.length == 0);
+			if(subject.value==""){
+				alert('제목은 필수 입니다.');
+				subject.focus();
+			}else {
+				frm.submit();
+			}
+		});
+
+	</script>
 
 </body>
 </html>

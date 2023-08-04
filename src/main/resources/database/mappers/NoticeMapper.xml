@@ -21,6 +21,9 @@
 			<when test="kind == 'contents'">
 				CONTENTS LIKE '%' || #{keyword} || '%'
 			</when>
+			<when test="kind == 'subject'">
+					SUBJECT LIKE '%'|| #{keyword} ||'%'	
+			</when>
 			<otherwise>
 				NOTICENUM IS NOT NULL	
 			</otherwise>
@@ -43,7 +46,7 @@
 	</sql>
   	
   	
-  	<select id="getList" resultMap="getDetailResult">
+  	<select id="getList" resultMap="getDetailResult" parameterType="Pager">
 		SELECT  NOTICENUM,SUBJECT,NAME,CREATEDATE,HIT
 		FROM
 			(SELECT ROWNUM R ,N.* 
