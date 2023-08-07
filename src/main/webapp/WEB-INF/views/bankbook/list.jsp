@@ -63,10 +63,12 @@
 		<br><br>
 	<a class="btn btn-outline-secondary" href="./add" >상품등록</a>
 	</section>
+	
+	<button id="list">GetList</button>
 <%-- 	<c:forEach begin="1" step="2" end="10" var="num">
 		<h1>${num}</h1>
 	</c:forEach> --%>
-	
+	<script type="text/javascript" src="../resources/js/bookList.js"></script>
 	
 
 

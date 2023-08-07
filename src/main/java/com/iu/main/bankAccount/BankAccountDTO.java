@@ -1,4 +1,4 @@
-package com.iu.main.BankAccount;
+package com.iu.main.bankAccount;
 
 import java.sql.Date;
 
@@ -8,9 +8,11 @@ public class BankAccountDTO {
 	private String id;
 	private Long bookNum;
 	private Long account;
-	private Long accountPw;
+	private String accountPw;
 	private Long balance;
 	private Date accountDate;
+	
+	
 	public Long getAccountNum() {
 		return accountNum;
 	}
@@ -35,13 +37,16 @@ public class BankAccountDTO {
 	public void setAccount(Long account) {
 		this.account = account;
 	}
-	public Long getAccountPw() {
+	public String getAccountPw() {
 		return accountPw;
 	}
-	public void setAccountPw(Long accountPw) {
+	public void setAccountPw(String accountPw) {
 		this.accountPw = accountPw;
 	}
 	public Long getBalance() {
+		if(this.balance==null) {
+			this.balance=0L;
+		}
 		return balance;
 	}
 	public void setBalance(Long balance) {
