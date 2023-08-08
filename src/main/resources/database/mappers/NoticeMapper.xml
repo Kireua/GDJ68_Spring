@@ -106,12 +106,20 @@
   		<selectKey keyProperty="num" resultType="Long" order="BEFORE">
   			SELECT NOTICE_SEQ.NEXTVAL FROM DUAL
   		</selectKey>
-  		INSERT INTO NOTICE VALUES(#{num},#{subject},#{contents},#{name},SYSDATE,0)
+  		INSERT INTO NOTICE VALUES(#{num},#{name},#{subject},#{contents},SYSDATE,0)
   	</insert>
   	
 	<insert id="setFileAdd" parameterType="NoticeFileDTO">
   		INSERT INTO NOTICEFILE VALUES(NOTICEFILE_SEQ.NEXTVAL,#{noticeNum},#{originalName},#{fileName})
   	</insert> 
+  	
+  	<delete id="setFileDelete" parameterType="NoticeFileDTO">
+  		DELETE NOTICEFILE WHERE FILENUM=#{fileNum}
+  	</delete>
+  	
+  	<select id="getFileDetail" parameterType="NoticeFileDTO" resultType="NoticeFileDTO">
+  		SELECT * FROM NOTICEFILE WHERE FILENUM=#{fileNum}
+  	</select>
   	
   	
   </mapper>

@@ -5,6 +5,8 @@
   
   <mapper namespace="com.iu.main.member.MemberDAO">
   	
+  	
+  	
   	<insert id="setFileJoin" parameterType="MemberFileDTO">
   		INSERT INTO MEMBERFILE VALUES(MEMBERFILE_SEQ.NEXTVAL,#{id},#{originalName},#{fileName})
   	</insert>
@@ -35,6 +37,10 @@
 	<update id="setMemberUpdate" parameterType="MemberDTO">
 		UPDATE MEMBER SET PW=#{pw}, NAME=#{name}, EMAIL=#{email}, BIRTH=#{birth} WHERE ID=#{id}	
 	</update>
+  	
+  	<select id="getId" parameterType="MemberDTO" resultType="MemberDTO">
+  		SELECT * FROM MEMBER WHERE ID = #{id}
+  	</select>
   	
   	<insert id="setJoin" parameterType="MemberDTO">
 		INSERT INTO MEMBER(ID, PW, NAME, EMAIL, BIRTH) VALUES(#{id}, #{pw}, #{name}, #{email}, #{birth})

@@ -47,7 +47,10 @@
 
 		productList.addEventListener('click',function(event){
 			if(event.target.classList.contains('move')){
-				alert("list");
+				let page = event.target.getAttribute('data-num');
+				console.log('before');
+				getList(page);
+				console.log('after');
 			}
 		})
 
@@ -58,6 +61,7 @@
 			})
 			.then((response)=>{return response.text()})
 			.then((r)=>{
+				console.log('ajax실행중')
 				productList.innerHTML=r;
 				console.log(r);
 			});

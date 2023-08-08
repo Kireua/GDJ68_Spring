@@ -32,6 +32,7 @@
 	
 	<a href="./update?bookNum=${dto.bookNum}">수정</a>
 	<a href="./delete?bookNum=${dto.bookNum}">삭제</a>
+	
 	<button id="update">수정</button>
 	<button id="del" data-delete-name="bookNum" data-delete-num="${dto.bookNum}">삭제</button>
 	<a class="btn btn-primary" href="../bankAccount/add?bookNum=${dto.bookNum}">상품가입</a>
@@ -53,21 +54,57 @@
 			<div class="modal-footer">
 			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close">취소</button>
 			<button type="button" id="add" class="btn btn-primary" data-add-num="${dto.bookNum}">상품가입</button>
+		
 			</div>
 		</div>
 		</div>
-	</div>
+		
+		</div>
 <%-- 	<c:if test="${dto.bookSale eq 1}">
 		<h1> 판매중 </h1>
 	</c:if>
 	<c:if test="${dto.bookSale eq 0 }">
 		<h1> 판매종료</h1>
 	</c:if> --%>
+		<div class="input-group text-center">
+		<span class="input-group-text" id="basic-addon2">댓글입력</span>
+		<button type="button" id="add1" class="btn btn-primary" data-add-num="${dto.bookNum}" data-add-id="${member.id }">댓글등록</button>
+		<textarea class="input-group" rows="" cols="" name="comments" id="comments"></textarea>
+		</div><br>
+		
+		<div id="productList">
 
+		</div>
 	<script src="../resources/js/delete.js"></script>
 
 	<script>
+		const productList = document.getElementById('productList');
 		const add = document.getElementById("add");
+		const add1 = document.getElementById("add1");
+		const comment = document.getElementById("comments");
+		getList(1);
+		productList.addEventListener('click',function(event){
+			if(event.target.classList.contains('move')){
+				let page = event.target.getAttribute('data-num');
+				console.log('before');
+				getList(page);
+				console.log('after');
+			}
+		})
+		function getList(page){
+			let bookNum=add.getAttribute('data-add-num');
+			fetch("../bankComment/list?bookNum="+bookNum+"&page="+page, {
+				method:"get"
+			})
+			.then((response)=>{return response.text()})
+			.then((r)=>{
+				console.log('ajax실행중')
+				productList.innerHTML=r;
+				
+			});
+		}
+	
+		
 		
 		add.addEventListener("click", function(){
 			let bookNum=add.getAttribute('data-add-num');
@@ -77,6 +114,39 @@
 
 
 		});
+		
+		add1.addEventListener("click", function(){
+			let bookNum=add1.getAttribute('data-add-num');
+			let id = add1.getAttribute('data-add-id');
+			let comments = comment.value;
+			// ajax1(bookNum,pw);
+			ajax3(bookNum,id,comments);
+
+
+		});
+		function ajax3(bookNum, id,comments){
+			fetch("../bankComment/add",{
+				method:"post",
+				body:"bookNum="+bookNum+"&id="+id+"&comments="+comments,
+				headers:{
+					"Content-type":"application/x-www-form-urlencoded"
+
+				}
+			})
+			.then((response)=>{
+				return response.text();
+			})
+			//리턴 response.text() 를 닮을 변수 r 
+			.then((r)=>{
+				if(r>0){
+					alert('등록완료');
+				}else {
+					alert('등록실패');
+				}
+				location.href="./detail?bookNum="+bookNum;
+			})
+
+		}
 
 		function ajax2(bookNum, pw){
 			fetch("../bankAccount/add",{

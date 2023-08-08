@@ -8,6 +8,7 @@
 		<typeAlias type="com.iu.main.bankBook.BankBookDTO" alias="BankBookDTO"/>
 		<typeAlias type="com.iu.main.bankBook.BankFileDTO" alias="BankFileDTO"/>
 		<typeAlias type="com.iu.main.bankAccount.BankAccountDTO" alias="BankAccountDTO"/>
+		<typeAlias type="com.iu.main.comment.bankComment.BankCommentDTO" alias="BankCommentDTO"/>
 		<typeAlias type="java.lang.Long" alias="Long"/>
 		<typeAlias type="com.iu.main.member.MemberDTO" alias="MemberDTO"/>
 		<typeAlias type="com.iu.main.member.MemberFileDTO" alias="MemberFileDTO"/>

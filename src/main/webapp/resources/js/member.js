@@ -15,7 +15,7 @@ let pw2CheckResult=false;
 let nameCheckResult=false;
 let emailCheckResult=false;
 
-let chekResults=[false,false,false,false,false, false];
+let chekResults=[false,false,false,false,false,false,false];
 
 //---- ID Check-----
 //비어X, 최대 10
@@ -23,19 +23,33 @@ id.addEventListener("blur", function(){
     const idResult = document.getElementById(id.id+"Result")
     console.log(idResult);
     
+    fetch("idCheck?id="+id.value, {method:"get"})
+         .then((response)=>{return response.text()})
+         .then((r)=>{
+            if(r.trim()=='1'){
+                if(id.value == "" || id.value.length>10){
+                    console.log("xxxxxx");
+                    idResult.innerHTML="ID는 비어있으면 X, 10글자 미만이어야 한다";
+                    idResult.className="f";
+                    chekResults[0]=false;
+                    chekResults[6]=false;
+                    
+                }else {
+                    console.log("ok");
+                    idResult.innerHTML="가능한 ID입니다.";
+                    idResult.className="s";
+                    chekResults[0]=true;
+                    chekResults[6]=true;
+                }
+            }else {
+                idResult.innerHTML="이미 사용중인 ID 입니다";
+                idResult.className="f";
+                chekResults[0]=false;
+                chekResults[6]=false;
+            }
+         })
 
-    if(id.value == "" || id.value.length>10){
-        console.log("xxxxxx");
-        idResult.innerHTML="ID는 비어있으면 X, 10글자 미만이어야 한다";
-        idResult.className="f";
-       chekResults[0]=false;
-        
-    }else {
-        console.log("ok");
-        idResult.innerHTML="가능한 ID입니다.";
-        idResult.className="s";
-        chekResults[0]=true;
-    }
+
 });
 
 //-----------------------------
@@ -130,7 +144,7 @@ btn.addEventListener("click",function(){
     if(!c){
         //form 전송
         console.log("form 전송")
-        frm.onsubmit();
+        //frm.onsubmit();
     }else {
         alert("필수 항목은 입력해");
     }

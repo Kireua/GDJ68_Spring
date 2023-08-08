@@ -61,9 +61,24 @@ public class NoticeService implements BoardService {
 	}
 	
 	@Override
-	public int setUpdate(BoardDTO boardDTO) throws Exception {
+	public int setUpdate(BoardDTO boardDTO,MultipartFile[] photos, HttpSession session) throws Exception {
 		
-		return noticeDAO.setUpdate(boardDTO);
+		int result = noticeDAO.setUpdate(boardDTO);
+		String path = "/resources/upload/notice/";
+		for(MultipartFile multipartFile: photos) {
+			if(multipartFile.isEmpty()) {
+				continue;
+			}
+			String fileName = fileManager.fileSave(path, multipartFile,session);
+			NoticeFileDTO noticeFileDTO = new NoticeFileDTO();
+			noticeFileDTO.setOriginalName(multipartFile.getOriginalFilename());
+			noticeFileDTO.setFileName(fileName);
+			//2번째 방법 selectkey 매퍼 에서 등록해서 사용하기
+			noticeFileDTO.setNoticeNum(boardDTO.getNum());
+			result = noticeDAO.setFileAdd(noticeFileDTO);
+		}
+		
+		return result;
 	}
 	
 	@Override
@@ -76,6 +91,19 @@ public class NoticeService implements BoardService {
 	public int setHitUpdate(BoardDTO boardDTO) throws Exception {
 		
 		return noticeDAO.setHitUpdate(boardDTO);
+	}
+	
+	public int setFileDelete(NoticeFileDTO noticeFileDTO, HttpSession session) throws Exception{
+		//폴더에서 파일 삭제
+		noticeFileDTO = noticeDAO.getFileDetail(noticeFileDTO);
+		boolean check = fileManager.fileDelete(noticeFileDTO, "/resources/upload/notice/", session);
+		
+		if(check) {
+			
+			//db 삭제
+			return noticeDAO.setFileDelete(noticeFileDTO);
+		}
+		return 0;
 	}
 	
 }

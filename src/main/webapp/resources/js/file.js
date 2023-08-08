@@ -6,8 +6,32 @@
 const fileBtn = document.getElementById('fileBtn');
 const fileList = document.getElementById('fileList');
 const df = document.getElementsByClassName('df');
+const deletes = document.getElementsByClassName('deletes');
+
 let idx = 0;
-let count = 0;
+let count =0; 
+if(deletes !=null){
+    count=deletes.length;
+}
+
+for(del of deletes){
+    del.addEventListener('click',function(){
+        let num = this.getAttribute('data-delete-num');
+        let check = confirm('삭제시 복구 불가');
+        if(check){
+            fetch("./fileDelete?fileNum="+num,{method:"GET"})
+                .then((result)=>{return result.text()})
+                .then((r)=>{
+                    if(r.trim()=='1'){
+                        console.log(this.previousSibling.previousSibling);
+                        this.previousSibling.previousSibling.remove();
+                        this.remove();
+                        count--;
+                    }
+                })
+        }
+    });
+}
 
 fileList.addEventListener('click',function(event){
     console.log(event.target);

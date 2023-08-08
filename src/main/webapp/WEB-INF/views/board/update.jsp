@@ -11,7 +11,7 @@
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
 	<h1>update</h1>
-	<form class="mb-5 text-center form-control" action="./update" method="post">
+	<form class="mb-5 text-center form-control" action="./update" method="post" enctype="multipart/form-data">
 		<table class="table table-dark table-hover">
 		<thead>
 			<th>글번호</th>
@@ -30,9 +30,23 @@
 				</tr>
 		</tbody>
 		</table>
-		
+		<div id="fileList" class="mb-3">
+		<div class="mb-3">
+			<button id="fileBtn" type="button">File추가</button>
+		</div>
+		</div>
+		<div>
+		<c:forEach items="${dto.noticeFileDTOs}" var="f">
+			<div class="alert alert-danger" role="alert">
+				${f.originalName}
+			</div>
+			<span class="deletes" data-delete-num="${f.fileNum}">X</span>
+		</c:forEach>
+		</div>
 		<button type="submit">수정</button>
 
 	</form>
+
+	<script src="../resources/js/file.js"></script>
 </body>
 </html>

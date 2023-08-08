@@ -25,6 +25,10 @@ public class MemberService {
 //	private HttpSession session; // 이렇게하면 나중에 문제 생길 수 있음  
 	
 	
+	public MemberDTO getId(MemberDTO memberDTO) throws Exception {
+		return memberDAO.getId(memberDTO);
+	}
+	
 	public MemberDTO getLogin(MemberDTO memberDTO) throws Exception{
 		
 		return memberDAO.getLogin(memberDTO);

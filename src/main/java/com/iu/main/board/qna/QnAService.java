@@ -63,7 +63,7 @@ public class QnAService implements BoardService {
 	}
 
 	@Override
-	public int setUpdate(BoardDTO boardDTO) throws Exception {
+	public int setUpdate(BoardDTO boardDTO, MultipartFile[] photos, HttpSession session) throws Exception {
 		int result = qnADAO.setUpdate(boardDTO);
 		return result;
 	}

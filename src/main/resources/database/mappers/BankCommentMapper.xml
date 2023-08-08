@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.iu.main.comment.bankComment.BankCommentDAO">
+  
+  	<insert id="setAdd" parameterType="BankCommentDTO">
+  		INSERT INTO BANKCOMMENT VALUES(BANKCOMMENT_SEQ.NEXTVAL,#{bookNum},#{id},#{comments},SYSDATE,0,0,0)
+  	</insert>
+  	
+  	<select id="getList" parameterType="Map" resultType="BankCommentDTO">
+  		SELECT * FROM 
+  		(SELECT ROWNUM R, A.*
+  		FROM
+  		(SELECT * FROM BANKCOMMENT
+  		WHERE BOOKNUM = #{bookNum.bookNum}
+  		ORDER BY COMMENTNUM DESC) A)
+  		WHERE R BETWEEN #{pager.startRow} AND #{pager.lastRow}
+  	</select>
+  	
+  	<select id="getTotal" parameterType="BankCommentDTO" resultType="Long">
+  		SELECT COUNT(COMMENTNUM) FROM BANKCOMMENT WHERE BOOKNUM = #{bookNum}
+  	</select>
+  	
+  </mapper>

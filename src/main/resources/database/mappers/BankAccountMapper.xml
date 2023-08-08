@@ -5,6 +5,7 @@
   
   <mapper namespace="com.iu.main.bankAccount.BankAccountDAO">
   	
+	
   	<select id="getTotal" resultType="Long">
   		SELECT COUNT(ACCOUNTNUM) FROM BANKACCOUNT
   	</select>

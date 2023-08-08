@@ -24,6 +24,10 @@ public class MemberDAO {
 		return sqlSession.update(NAMESPACE+"setMemberUpdate", memberDTO);
 	}
 	
+	public MemberDTO getId(MemberDTO memberDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getId", memberDTO);
+	}
+	
 	public int setJoin(MemberDTO memberDTO) {
 		return sqlSession.insert(NAMESPACE + "setJoin", memberDTO);
 	}
