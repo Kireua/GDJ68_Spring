@@ -33,8 +33,9 @@
 		  <ul class="pagination">
 		  <c:if test="${pager.pre}">
 		    <li class="page-item ">
-		      <a class="page-link move" href="#" data-num="${pager.page-1}" aria-label="Previous"></a>
-		    <span aria-hidden="true">&laquo;</span>
+		      <a class="page-link move" href="#" data-num="${pager.page-1}" aria-label="Previous">
+		    	<span aria-hidden="true">&laquo;</span>
+			</a>
 		    </li>
 			</c:if>
 		   <c:forEach begin="${pager.startNum }" end="${pager.lastNum }" var="i">
@@ -58,6 +59,6 @@
 	</c:forEach> --%>
 	
 	
-	<script src="/resources/js/list.js"></script>
+	<!-- <script src="/resources/js/list.js"></script> -->
 
 </body>

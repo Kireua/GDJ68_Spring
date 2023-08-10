@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <c:import url="../temp/bootStrap.jsp"></c:import>
 <title>Insert title here</title>
+
 </head>
 <body>
 	<c:import url="../temp/header.jsp"></c:import>

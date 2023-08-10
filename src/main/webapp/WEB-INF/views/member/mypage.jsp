@@ -41,30 +41,54 @@
 	</div>
 	</section>
 	<script>
-		const productList = document.getElementById('productList');
+		// const productList = document.getElementById('productList');
 		
 		getList(1);
 
-		productList.addEventListener('click',function(event){
-			if(event.target.classList.contains('move')){
-				let page = event.target.getAttribute('data-num');
-				console.log('before');
-				getList(page);
-				console.log('after');
-			}
+		// productList.addEventListener('click',function(event){
+		// 	if(event.target.classList.contains('move')){
+		// 		let page = event.target.getAttribute('data-num');
+		// 		console.log('before');
+		// 		getList(page);
+		// 		console.log('after');
+		// 	}
+		// })
+
+
+		$('#productList').on('click','.move',function(){
+			let page = $(this).attr('data-num');
+			getList(page);
 		})
+			
+		
 
 		function getList(page){
 			
-			fetch("../bankAccount/list?page="+page,{
-				method:"get"
+			$.ajax({
+				type:"GET",
+				url:"../bankAccount/list",
+				data:{
+					page:page
+				},
+				success : function(r){
+					$('#productList').html(r.trim());
+				},
+				error : function(){
+					alert("관리자에게 문의하세요");
+				}
 			})
-			.then((response)=>{return response.text()})
-			.then((r)=>{
-				console.log('ajax실행중')
-				productList.innerHTML=r;
-				console.log(r);
-			});
+
+
+
+			// fetch("../bankAccount/list?page="+page,{
+			// 	method:"get"
+			// })
+			// .then((response)=>{return response.text()})
+			// .then((r)=>{
+			// 	console.log('ajax실행중')
+			// 	productList.innerHTML=r;
+			// 	console.log(r);
+			// });
 		}
 
 	</script>
