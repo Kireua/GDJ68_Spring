@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.iu.main.bankBook.BankFileDTO;
 import com.iu.main.board.BoardDTO;
 import com.iu.main.board.BoardService;
+import com.iu.main.file.FileDTO;
 import com.iu.main.util.FileManager;
 import com.iu.main.util.Pager;
 
@@ -106,4 +107,26 @@ public class NoticeService implements BoardService {
 		return 0;
 	}
 	
+	public String setContentsImg(MultipartFile file, HttpSession session) throws Exception {
+		String path = "/resources/upload/notice/";
+	
+		String fileName = fileManager.fileSave(path, file, session);
+		return path+fileName;
+	}
+	
+	public boolean setContentsImgDelete(String path, HttpSession session) throws Exception{
+		//path : /resources/upload/notice/파일명
+		
+		FileDTO fileDTO = new FileDTO();
+//		path = path.substring(0,path.lastIndexOf("\\")+1);
+		String fileName = path.substring(path.lastIndexOf("/")+1);
+		System.out.println(fileName);
+		fileDTO.setFileName(fileName);
+		path = "/resources/upload/notice/";
+		
+		return fileManager.fileDelete(fileDTO, path, session);
+		
+		
+		
+	}
 }

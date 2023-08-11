@@ -32,6 +32,16 @@
 				</tr>
 		</tbody>
 		</table>
+	<table class="table table-dark table-hover">
+		<thead>
+			<th>내용</th>
+		</thead>
+		<tbody>
+			<tr>
+				<td>${dto.contents}</td>
+			</tr>
+		</tbody>
+	</table>
 	
 	<c:if test="${board eq '공지' }">
 		<c:forEach items="${dto.noticeFileDTOs}" var="f">

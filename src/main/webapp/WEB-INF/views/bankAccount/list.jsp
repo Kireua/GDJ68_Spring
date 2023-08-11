@@ -27,6 +27,9 @@
 			</c:forEach>
 			
 		</tbody>
+
+		
+		
 		
 	</table>
 	<nav aria-label="...">

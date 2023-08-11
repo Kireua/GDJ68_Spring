@@ -7,7 +7,7 @@
 
 	<section class="container mt-5">
 	
-	<h1 class="mb-5 text-center" >상품 댓글 목록</h1>
+	<!-- <h1 class="mb-5 text-center" >상품 댓글 목록</h1> -->
 	
 	<!-- 표현식 -->
 
@@ -27,14 +27,15 @@
 			</c:forEach>
 			
 		</tbody>
-		
+		<input type="hidden" id="total" value="${pager.totalPage}">
 	</table>
-		<nav aria-label="...">
+		<!-- <nav aria-label="...">
 		  <ul class="pagination">
 		  <c:if test="${pager.pre}">
 		    <li class="page-item ">
-		      <a class="page-link move" href="#" data-num="${pager.page-1}" aria-label="Previous"></a>
+		      <a class="page-link move" href="#" data-num="${pager.page-1}" aria-label="Previous">
 		    <span aria-hidden="true">&laquo;</span>
+		    </a>
 		    </li>
 			</c:if>
 		   <c:forEach begin="${pager.startNum }" end="${pager.lastNum }" var="i">
@@ -48,13 +49,13 @@
 		    </li>
 		 
 		  </ul>
-		</nav>
+		</nav> -->
 		
 
 	</section>
 <%-- 	<c:forEach begin="1" step="2" end="10" var="num">
 		<h1>${num}</h1>
-	</c:forEach> --%>
+	</c:forEach> --%> s
 	
 	
 	

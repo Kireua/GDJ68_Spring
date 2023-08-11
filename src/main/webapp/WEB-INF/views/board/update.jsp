@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <c:import url="../temp/bootStrap.jsp"></c:import>
 <title>Insert title here</title>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 </head>
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
@@ -18,7 +20,7 @@
 			<th>제목</th>
 			<th>작성자</th>
 			<th>작성일</th>
-			<th>내용</th>
+			
 		</thead>
 		<tbody>
 				<tr>
@@ -26,9 +28,17 @@
 					<td><input type="text" name="subject" value="${dto.subject}"></td>
 					<td>${dto.name}</td>
 					<td><input type="text" name="createDate" value="${dto.createDate}"></td>
-					<td><textarea rows="" cols="" name="contents">${dto.contents}</textarea></td>
+					
 				</tr>
 		</tbody>
+		</table>
+		<table class="table table-dark table-hover">
+			<thead>
+				<th>내용</th>
+			</thead>
+			<tbody>
+				<td><textarea rows="" cols="" name="contents" id="contents">${dto.contents}</textarea></td>
+			</tbody>
 		</table>
 		<div id="fileList" class="mb-3">
 		<div class="mb-3">
@@ -48,5 +58,12 @@
 	</form>
 
 	<script src="../resources/js/file.js"></script>
+	<script>
+		
+		$("#contents").summernote({
+			height: 300
+		});
+
+	</script>
 </body>
 </html>

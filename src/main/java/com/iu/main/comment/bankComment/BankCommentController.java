@@ -31,9 +31,6 @@ public class BankCommentController {
 	
 	@PostMapping(value = "add")
 	public String setAdd(BankCommentDTO bankCommentDTO,Model model) throws Exception {
-		System.out.println(bankCommentDTO.getId());
-		System.out.println(bankCommentDTO.getComments());
-		System.out.println(bankCommentDTO.getBookNum());
 		
 		int result = bankCommentService.setAdd(bankCommentDTO);
 		
@@ -46,6 +43,7 @@ public class BankCommentController {
 		System.out.println(bankCommentDTO.getBookNum());
 		List<BankCommentDTO> ar = bankCommentService.getList(bankCommentDTO,pager);
 		mav.addObject("list", ar);
+		mav.addObject("pager", pager);
 		mav.setViewName("bankComment/list");
 		
 		return mav;

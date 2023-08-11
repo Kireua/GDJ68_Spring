@@ -69,12 +69,18 @@
 	<c:if test="${member.id ne null}">
 		<div class="input-group text-center">
 		<span class="input-group-text" id="basic-addon2">댓글입력</span>
-		<textarea class="input-group" rows="" cols="" name="comments" id="comments"></textarea>
+		<textarea class="input-group" rows="" cols="" name="ss" id="comments"></textarea>
 		<button type="button" id="add1" class="btn btn-primary" data-add-num="${dto.bookNum}" data-add-id="${member.id }">댓글등록</button>
 		</div><br>
 	</c:if>
-		<div id="productList">
+	<table class="table table-dark table-hover">
+		<tbody id="productList">
+			
+		</tbody>
+	</table>
 
+		<div id="more">
+			
 		</div>
 	<script src="../resources/js/delete.js"></script>
 
@@ -92,14 +98,26 @@
 		// 		console.log('after');
 		// 	}
 		// })
+		let pageNum=1;
+		let total=0;
 
+		//page 변경 처리
 		$('#productList').on('click','.move',function(){
 			let page = $(this).attr('data-num');
 			getList(page);
 		})
 
+		//토탈페이지 더보기 처리
+		$("#more").on('click','#moreBtn',function(){
+			if(pageNum<total){
+				pageNum = pageNum+1;
+				getList(pageNum);
+			}else{
+				alert("마지막 페이지입니다.")
+			}
+		})
 
-
+		//ajax list 출력
 		function getList(page){
 			let bookNum= $('#add').attr('data-add-num');
 			// fetch("../bankComment/list?bookNum="+bookNum+"&page="+page, {
@@ -120,6 +138,9 @@
 				},
 				success : function(r){
 					$("#productList").append(r.trim());
+					total = $("#total").val()
+					let button = '<button id="moreBtn" class="btn btn-light">더보기('+pageNum+'/'+total+')</button>';
+					$("#more").html(button);
 					
 				},
 				error : function(){
@@ -136,6 +157,8 @@
 		// 	// ajax1(bookNum,pw);
 		// 	ajax2(bookNum,pw);
 		// });
+
+		//상품가입 add
 		$('#add').click(function(){
 			let bookNum= $('#add').attr('data-add-num');
 			let pw= $('#pw').val();
@@ -150,13 +173,16 @@
 		// 	ajax3(bookNum,id,comments);
 		// });
 
+		//코멘트 add comment
 		$('#add1').click(function(){
 			let bookNum = $('#add1').attr('data-add-num');
 			let id =  $('#add1').attr('data-add-id');
 			let comments = $('#comments').val();
 			ajax3(bookNum,id,comments);
+			
 		})
 
+		//comment 추가 ajax
 		function ajax3(bookNum, id,comments){
 			// fetch("../bankComment/add",{
 			// 	method:"post",
@@ -188,11 +214,14 @@
 				},
 				success : function(r){
 					if(r.trim()>0){
-						alert('등록완료');
+						$("#productList").empty();
+						$('#comments').val("");
+						pageNum=1;
+						getList(pageNum);
 					}else{
 						alert('등록실패');
 					}
-					location.href="./detail?bookNum="+bookNum;
+					// location.href="./detail?bookNum="+bookNum;
 				},
 				error : function(){
 					alert("관리자에게 문의하세요");
@@ -201,6 +230,8 @@
 
 		}
 
+
+		//상품가입 ajax
 		function ajax2(bookNum, pw){
 		// 	fetch("../bankAccount/add",{
 		// 		method:"post",
