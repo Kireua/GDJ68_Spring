@@ -11,6 +11,12 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 </head>
+<c:if test="${empty member }">
+	<script type="text/javascript">
+		alert("로그인하세요");
+		location.href="../member/login"
+	</script>
+</c:if>
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
 	<h1 class="mb-5 text-center">${board } 추가</h1>

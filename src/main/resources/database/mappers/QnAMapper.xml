@@ -115,10 +115,10 @@
   	</insert>
   	
   	<update id="setUpdate" parameterType="QnADTO">
-		UPDATE QNA SET SUBJECT=#{subject}, CREATEDATE=#{createDate}, CONTENTS=#{contents} WHERE NUM=#{num}  	
+		UPDATE QNA SET SUBJECT=#{subject}, CREATEDATE=#{createDate}, CONTENTS=#{contents} WHERE NUM=#{num} AND NAME=#{name}	
   	</update>
   	
   	<delete id="setDelete" parameterType="QnADTO">
-  		DELETE QNA WHERE NUM=#{num}
+  		DELETE QNA WHERE NUM=#{num} AND NAME=#{name}
   	</delete>
   </mapper>

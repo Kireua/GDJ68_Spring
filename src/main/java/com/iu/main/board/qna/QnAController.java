@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.main.board.BoardDTO;
 import com.iu.main.board.notice.NoticeDTO;
+import com.iu.main.member.MemberDTO;
 import com.iu.main.util.Pager;
 
 @Controller
@@ -89,7 +90,9 @@ public class QnAController {
 	}
 	
 	@RequestMapping(value = "delete")
-	public String setDelete(QnADTO qnADTO) throws Exception {
+	public String setDelete(QnADTO qnADTO,HttpSession session) throws Exception {
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		qnADTO.setName(memberDTO.getId());
 		int result = qnAService.setDelete(qnADTO);
 		return "redirect:./list";
 	}

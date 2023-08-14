@@ -1,6 +1,7 @@
 package com.iu.main.member;
 
 import java.sql.Date;
+import java.util.List;
 
 public class MemberDTO {
 	//접근지정자는 private
@@ -14,8 +15,15 @@ public class MemberDTO {
 	private String email;
 	private Date birth;
 	private MemberFileDTO memberFileDTO;
+	private List<RoleDTO> roleDTOs;
 	
 	
+	public List<RoleDTO> getRoleDTOs() {
+		return roleDTOs;
+	}
+	public void setRoleDTOs(List<RoleDTO> roleDTOs) {
+		this.roleDTOs = roleDTOs;
+	}
 	public MemberFileDTO getMemberFileDTO() {
 		return memberFileDTO;
 	}
