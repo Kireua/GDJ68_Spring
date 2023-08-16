@@ -43,14 +43,14 @@
 		</tbody>
 	</table>
 	
-	<c:if test="${board eq '공지' }">
+	<c:if test="${board eq 'notice' }">
 		<c:forEach items="${dto.noticeFileDTOs}" var="f">
-			<img alt="" src="../resources/upload/notice/${f.fileName }">
+			<a href="./fileDown?fileNum=${f.fileNum}">${f.originalName }</a>
 		</c:forEach>
 	</c:if> 
 	<c:if test="${board eq 'Q&A' }">
 		<c:forEach items="${dto.qnAFileDTOs}" var="f">
-			<img alt="" src="../resources/upload/qna/${f.fileName }">
+			<a href="../resources/upload/qna/${f.fileName }">${f.originalName }</a>
 		</c:forEach>
 	</c:if> 
 	<a href="./update?num=${dto.num}">수정</a>

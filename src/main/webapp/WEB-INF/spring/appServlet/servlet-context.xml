@@ -19,20 +19,26 @@
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="order" value="1"></beans:property>
 	</beans:bean>
+	
+	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<beans:property name="order" value="0"></beans:property>
+	</beans:bean>
+	
 	<beans:bean class="com.iu.main.interceptors.InterceptorTest1" id="interceptorTest1"></beans:bean>
 	<!-- Interceptor 설정 원래는 다른데에 파일만들어서도 할 수 있지만 잘 안되서 여기에다 작성함 빈의 이름은 클래스명 앞글자를 소문자로 -->
-	<interceptors>
-		<!-- <interceptor>
+	<!-- <interceptors>
+		<interceptor>
 			<mapping path="/notice/*"/>
 			<exclude-mapping path="/notice/add"/>
 			<beans:ref bean="interceptorTest1"/>
-		</interceptor> -->
+		</interceptor>
 
-<!-- 		<interceptor>
+		<interceptor>
 			<mapping path="/notice/*"/>
 			<beans:bean class="com.iu.main.interceptors.InterceptorTest1"></beans:bean>
-		</interceptor> -->
+		</interceptor>
 		
 		
 		<interceptor>
@@ -60,7 +66,7 @@
 			<mapping path="/notice/delete"/>			
 			<beans:ref bean="adminInterceptor"/>
 		</interceptor>
-	</interceptors>
+	</interceptors> -->
 	
 	<context:component-scan base-package="com.iu.main" />
 	

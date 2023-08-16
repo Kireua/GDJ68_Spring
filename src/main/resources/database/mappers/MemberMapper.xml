@@ -13,14 +13,14 @@
   	
   	<!-- 로그인 -->
   	<select id="getLogin" resultMap="getLoginResult" parameterType="MemberDTO">
-  		SELECT M.*,MF.*,R.*
+  		SELECT M.*,MF.*
   		FROM MEMBER M
   		LEFT OUTER JOIN MEMBERFILE MF
   		ON M.ID = MF.ID
-  		JOIN MEMBERROLE MR
+  	<!-- 	JOIN MEMBERROLE MR
   		ON M.ID = MR.ID
   		JOIN ROLE R
-  		ON MR.ROLENUM = R.ROLENUM
+  		ON MR.ROLENUM = R.ROLENUM -->
   		WHERE M.ID = #{id} AND M.PW=#{pw}
   	</select>
   	

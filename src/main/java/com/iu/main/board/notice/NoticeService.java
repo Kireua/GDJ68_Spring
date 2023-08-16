@@ -125,8 +125,10 @@ public class NoticeService implements BoardService {
 		path = "/resources/upload/notice/";
 		
 		return fileManager.fileDelete(fileDTO, path, session);
-		
-		
-		
+
+	}
+	
+	public NoticeFileDTO getFileDown(NoticeFileDTO noticeFileDTO) throws Exception {
+		return noticeDAO.getFileDetail(noticeFileDTO);
 	}
 }

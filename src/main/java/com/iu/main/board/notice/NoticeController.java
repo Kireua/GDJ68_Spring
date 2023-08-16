@@ -27,7 +27,14 @@ public class NoticeController {
 	
 	@ModelAttribute("board")
 	public String getBoardName() {
-		return "공지";
+		return "notice";
+	}
+	
+	@GetMapping("fileDown")
+	public String getFileDown(NoticeFileDTO noticeFileDTO, Model model) throws Exception{
+		noticeFileDTO = noticeService.getFileDown(noticeFileDTO);
+		model.addAttribute("file",noticeFileDTO);
+		return "fileManager";
 	}
 	
 	@PostMapping("setContentsImgDelete")
